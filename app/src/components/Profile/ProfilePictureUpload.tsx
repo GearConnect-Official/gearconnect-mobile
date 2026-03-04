@@ -46,7 +46,6 @@ export const ProfilePictureUpload: React.FC<ProfilePictureUploadProps> = ({
       cloudName: cloudinaryConfig.cloudName,
       hasApiKey: !!cloudinaryConfig.apiKey,
       hasUploadPreset: !!cloudinaryConfig.uploadPreset,
-      hasApiSecret: !!cloudinaryConfig.apiSecret,
     });
 
     if (!cloudinaryConfig.cloudName || !cloudinaryConfig.uploadPreset) {
