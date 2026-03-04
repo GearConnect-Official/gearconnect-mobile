@@ -22,7 +22,6 @@ const apiConfig: ApiConfig = {
  */
 export const cloudinaryConfig = {
   cloudName: Constants.expoConfig?.extra?.cloudinaryCloudName,
-  apiKey: Constants.expoConfig?.extra?.cloudinaryApiKey,
   uploadPreset: Constants.expoConfig?.extra?.cloudinaryUploadPreset,
 };
 

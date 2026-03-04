@@ -66,7 +66,6 @@ export default {
       apiPort: parseInt(process.env.API_PORT, 10),
       clerkPublishableKey: process.env.CLERK_PUBLISHABLE_KEY,
       cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
-      cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
       cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
       mixpanelToken: process.env.MIXPANEL_TOKEN,
       mixpanelServerURL: process.env.MIXPANEL_SERVER_URL || 'https://api-eu.mixpanel.com',

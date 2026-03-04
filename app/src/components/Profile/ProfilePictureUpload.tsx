@@ -44,7 +44,6 @@ export const ProfilePictureUpload: React.FC<ProfilePictureUploadProps> = ({
   useEffect(() => {
     console.log('🔍 ProfilePictureUpload: Cloudinary Config Check:', {
       cloudName: cloudinaryConfig.cloudName,
-      hasApiKey: !!cloudinaryConfig.apiKey,
       hasUploadPreset: !!cloudinaryConfig.uploadPreset,
     });
 
