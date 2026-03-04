@@ -1,9 +1,9 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuth } from '@clerk/clerk-expo';
-// Import officiel Clerk pour accéder au token hors composants
-import { getClerkInstance } from '@clerk/clerk-expo';
+
+const AUTH_TOKEN_KEY = '@auth_token';
 
 // Types d'erreurs identifiables
 export enum ErrorType {
@@ -16,7 +16,6 @@ export enum ErrorType {
   UNKNOWN = 'UNKNOWN'
 }
 
-// Interface pour les erreurs d'API normalisées
 export interface ApiError {
   type: ErrorType;
   status?: number;
@@ -25,210 +24,178 @@ export interface ApiError {
   data?: any;
 }
 
-// Interface pour les réponses d'erreur API
 interface ApiErrorResponse {
   message?: string;
   error?: string;
   [key: string]: any;
 }
 
-// 🔥 Configuration professionnelle des interceptors Axios avec Clerk
-let interceptorsConfigured = false;
+// Fonction de refresh injectée par le Provider (appelée uniquement sur 401)
+let refreshClerkToken: (() => Promise<string | null>) | null = null;
 
-export const configureAxios = async () => {
-  // Éviter la double configuration
-  if (interceptorsConfigured) {
-    console.log('✅ Axios interceptors already configured');
-    return;
-  }
+export const setTokenRefresher = (fn: (() => Promise<string | null>) | null) => {
+  refreshClerkToken = fn;
+};
 
-  console.log('🚀 Configuring Axios interceptors with Clerk...');
+// Flag pour éviter les boucles de refresh
+let isRefreshing = false;
 
-  // 🔐 REQUEST INTERCEPTOR - Ajouter automatiquement le Bearer token
-  axios.interceptors.request.use(
-    async (config) => {
-      try {
-        console.log(`📤 [${config.method?.toUpperCase()}] ${config.url}`);
+// REQUEST INTERCEPTOR — lit le token depuis AsyncStorage
+axios.interceptors.request.use(
+  async (config) => {
+    try {
+      console.log(`📤 [${config.method?.toUpperCase()}] ${config.url}`);
 
-        // 1. Récupérer le token Clerk (approche officielle)
-        // Skip token for verification routes and messaging routes that don't use Clerk
-        const isVerificationRoute = config.url?.includes('/verification/');
-        const isMessagingRoute = config.url?.includes('/messaging/');
-        
-        if (!isVerificationRoute && !isMessagingRoute) {
+      const isVerificationRoute = config.url?.includes('/verification/');
+
+      if (!isVerificationRoute) {
         try {
-          const clerkInstance = getClerkInstance();
-          const token = await clerkInstance.session?.getToken();
-          
+          const token = await AsyncStorage.getItem(AUTH_TOKEN_KEY);
           if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
             console.log('🔑 Bearer token added to request');
-            }
-            // No log for missing token - it's expected for some routes
-        } catch (clerkError) {
-            // Silent fail for routes that don't need Clerk
+          }
+        } catch (e) {
+          // Silent fail
+        }
+      }
+
+      try {
+        const userString = await AsyncStorage.getItem('user');
+        if (userString) {
+          const user = JSON.parse(userString);
+          if (user && user.id) {
+            config.headers['user-id'] = user.id;
+            console.log('👤 User ID added to headers');
           }
         }
-
-        // 2. Ajouter l'ID utilisateur depuis AsyncStorage (si nécessaire pour votre API)
-        try {
-          const userString = await AsyncStorage.getItem('user');
-          if (userString) {
-            const user = JSON.parse(userString);
-            if (user && user.id) {
-              config.headers['user-id'] = user.id;
-              console.log('👤 User ID added to headers');
-            }
-          }
-        } catch (storageError) {
-          console.warn('⚠️ Could not get user from storage:', storageError);
-        }
-
-        // 3. Ajouter headers par défaut
-        config.headers['Content-Type'] = config.headers['Content-Type'] || 'application/json';
-        config.headers['Accept'] = 'application/json';
-
-        return config;
-      } catch (error) {
-        console.error('❌ Error in request interceptor:', error);
-        return config;
+      } catch (storageError) {
+        console.warn('⚠️ Could not get user from storage:', storageError);
       }
-    },
-    (error) => {
-      console.error('❌ Request interceptor error:', error);
-      return Promise.reject(error);
+
+      config.headers['Content-Type'] = config.headers['Content-Type'] || 'application/json';
+      config.headers['Accept'] = 'application/json';
+
+      return config;
+    } catch (error) {
+      console.error('❌ Error in request interceptor:', error);
+      return config;
     }
-  );
+  },
+  (error) => Promise.reject(error)
+);
 
-  // 📥 RESPONSE INTERCEPTOR - Gestion des erreurs et logs
-  axios.interceptors.response.use(
-    (response: AxiosResponse) => {
-      console.log(`✅ [${response.config.method?.toUpperCase()}] ${response.config.url} - ${response.status}`);
-      return response;
-    },
-    (error: AxiosError) => {
-      const url = error.config?.url || 'unknown';
-      const method = error.config?.method?.toUpperCase() || 'UNKNOWN';
-      
-      let apiError: ApiError = {
-        type: ErrorType.UNKNOWN,
-        message: 'Une erreur inattendue s\'est produite',
-        originalError: error
-      };
+// RESPONSE INTERCEPTOR — auto-refresh token sur 401
+axios.interceptors.response.use(
+  (response: AxiosResponse) => {
+    console.log(`✅ [${response.config.method?.toUpperCase()}] ${response.config.url} - ${response.status}`);
+    return response;
+  },
+  async (error: AxiosError) => {
+    const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
+    const url = error.config?.url || 'unknown';
+    const method = error.config?.method?.toUpperCase() || 'UNKNOWN';
 
-      // Vérifier si c'est une requête de health check pour éviter les logs de spam
-      const isHealthCheck = url.includes('/api/health');
-      
-      // Ignorer les 404 sur les routes de vérification qui n'existent pas encore (backend not implemented)
-      const isVerificationRoute = url.includes('/verification/');
-      const shouldIgnore404 = isVerificationRoute && error.response?.status === 404;
+    // Auto-refresh sur 401 : rafraîchir le token et retenter UNE fois
+    if (error.response?.status === 401 && !originalRequest?._retry && refreshClerkToken && !isRefreshing) {
+      originalRequest._retry = true;
+      isRefreshing = true;
 
-      // Gestion des erreurs réseau
-      if (error.code === 'ECONNABORTED') {
-        apiError = {
-          type: ErrorType.TIMEOUT,
-          message: 'La requête a expiré. Veuillez réessayer.',
-          originalError: error
-        };
-      } else if (error.code === 'ERR_NETWORK') {
-        apiError = {
-          type: ErrorType.NETWORK,
-          message: 'Impossible de se connecter au serveur. Vérifiez votre connexion internet.',
-          originalError: error
-        };
-      } else if (error.response) {
-        // Réponse d'erreur du serveur
-        const { status, data } = error.response;
-        const errorData = data as ApiErrorResponse;
-        
-        apiError.status = status;
-        apiError.data = errorData;
-
-        // Classification basée sur le code HTTP
-        switch (status) {
-          case 401:
-            apiError.type = ErrorType.UNAUTHORIZED;
-            apiError.message = 'Authentication requise. Token invalide ou expiré.';
-            console.log('🔒 401 Unauthorized - Token problem detected');
-            break;
-          case 403:
-            apiError.type = ErrorType.UNAUTHORIZED;
-            apiError.message = 'Accès refusé. Permissions insuffisantes.';
-            break;
-          case 404:
-            apiError.type = ErrorType.NOT_FOUND;
-            apiError.message = 'Ressource non trouvée.';
-            break;
-          case 422:
-            apiError.type = ErrorType.VALIDATION;
-            apiError.message = 'Données invalides.';
-            break;
-          case 500:
-          case 502:
-          case 503:
-          case 504:
-            apiError.type = ErrorType.SERVER;
-            apiError.message = 'Erreur serveur. Veuillez réessayer plus tard.';
-            break;
-          default:
-            apiError.type = ErrorType.UNKNOWN;
-            apiError.message = errorData?.message || errorData?.error || 'Erreur inconnue.';
+      try {
+        console.log('🔄 Token expiré, refresh en cours...');
+        const newToken = await refreshClerkToken();
+        if (newToken) {
+          await AsyncStorage.setItem(AUTH_TOKEN_KEY, newToken);
+          originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
+          console.log('🔑 Token rafraîchi, retry de la requête');
+          isRefreshing = false;
+          return axios(originalRequest);
         }
+      } catch (refreshError) {
+        console.warn('⚠️ Impossible de rafraîchir le token');
       }
-
-      // Logs conditionnels
-      // Ignore health checks and 404s on verification routes (backend not implemented yet)
-      if (!isHealthCheck && !shouldIgnore404 && apiError.type !== ErrorType.NETWORK) {
-        console.error(`❌ [${method}] ${url} - ${apiError.status || 'Network'}: ${apiError.message}`);
-      }
-      
-      // For verification routes with 404, return a silent error that won't be logged
-      if (shouldIgnore404) {
-        const silentError: ApiError = {
-          type: ErrorType.NOT_FOUND,
-          message: 'Route not implemented',
-          status: 404,
-          originalError: error
-        };
-        return Promise.reject(silentError);
-      }
-
-      return Promise.reject(apiError);
+      isRefreshing = false;
     }
-  );
 
-  interceptorsConfigured = true;
-  console.log('✅ Axios interceptors configured successfully!');
-};
+    // Construction de l'erreur normalisée
+    let apiError: ApiError = {
+      type: ErrorType.UNKNOWN,
+      message: 'Une erreur inattendue s\'est produite',
+      originalError: error
+    };
 
-// Handler d'erreur global pour les composants
+    const isHealthCheck = url.includes('/api/health');
+    const isVerificationRoute = url.includes('/verification/');
+    const shouldIgnore404 = isVerificationRoute && error.response?.status === 404;
+
+    if (error.code === 'ECONNABORTED') {
+      apiError = { type: ErrorType.TIMEOUT, message: 'La requête a expiré. Veuillez réessayer.', originalError: error };
+    } else if (error.code === 'ERR_NETWORK') {
+      apiError = { type: ErrorType.NETWORK, message: 'Impossible de se connecter au serveur.', originalError: error };
+    } else if (error.response) {
+      const { status, data } = error.response;
+      const errorData = data as ApiErrorResponse;
+      apiError.status = status;
+      apiError.data = errorData;
+
+      switch (status) {
+        case 401:
+          apiError.type = ErrorType.UNAUTHORIZED;
+          apiError.message = 'Authentication requise. Token invalide ou expiré.';
+          console.log('🔒 401 Unauthorized - Token problem detected');
+          break;
+        case 403:
+          apiError.type = ErrorType.UNAUTHORIZED;
+          apiError.message = 'Accès refusé. Permissions insuffisantes.';
+          break;
+        case 404:
+          apiError.type = ErrorType.NOT_FOUND;
+          apiError.message = 'Ressource non trouvée.';
+          break;
+        case 422:
+          apiError.type = ErrorType.VALIDATION;
+          apiError.message = 'Données invalides.';
+          break;
+        case 500: case 502: case 503: case 504:
+          apiError.type = ErrorType.SERVER;
+          apiError.message = 'Erreur serveur. Veuillez réessayer plus tard.';
+          break;
+        default:
+          apiError.message = errorData?.message || errorData?.error || 'Erreur inconnue.';
+      }
+    }
+
+    if (!isHealthCheck && !shouldIgnore404 && apiError.type !== ErrorType.NETWORK) {
+      console.error(`❌ [${method}] ${url} - ${apiError.status || 'Network'}: ${apiError.message}`);
+    }
+
+    if (shouldIgnore404) {
+      return Promise.reject({ type: ErrorType.NOT_FOUND, message: 'Route not implemented', status: 404, originalError: error });
+    }
+
+    return Promise.reject(apiError);
+  }
+);
+
 export const handleApiError = (error: any): ApiError => {
-  // Si c'est déjà une ApiError normalisée, on la retourne directement
   if (error && error.type && Object.values(ErrorType).includes(error.type)) {
     return error as ApiError;
   }
-
-  // Par défaut, on retourne une erreur inconnue
-  return {
-    type: ErrorType.UNKNOWN,
-    message: 'Une erreur inattendue s\'est produite',
-    originalError: error
-  };
+  return { type: ErrorType.UNKNOWN, message: 'Une erreur inattendue s\'est produite', originalError: error };
 };
 
-// 🚀 Provider moderne pour Expo Router avec configuration automatique
+// Provider léger : injecte juste la fonction de refresh (pas d'appels Clerk en boucle)
 const AxiosConfigProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
-  const { isLoaded } = useAuth();
+  const { isLoaded, getToken } = useAuth();
 
-  useEffect(() => {
-    // Attendre que Clerk soit chargé avant de configurer axios
-    if (isLoaded) {
-      console.log('🎯 Clerk loaded, configuring axios...');
-      configureAxios();
-    }
-  }, [isLoaded]);
+  // Injecter la fonction de refresh une seule fois
+  if (isLoaded && getToken) {
+    setTokenRefresher(getToken);
+  }
+
+  if (!isLoaded) return null;
 
   return children as React.ReactElement || null;
 };
 
-export default AxiosConfigProvider; 
+export default AxiosConfigProvider;
