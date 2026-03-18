@@ -16,10 +16,10 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CloudinaryAvatar } from '../src/components/media/CloudinaryImage';
-import { groupsScreenStyles as styles } from '../src/styles/screens/groups';
-import groupService, { Group } from '../src/services/groupService';
-import { useAuth } from '../src/context/AuthContext';
+import { CloudinaryAvatar } from '@/components/media/CloudinaryImage';
+import { groupsScreenStyles as styles } from '@/styles/screens/groups';
+import groupService, { Group } from '@/services/groupService';
+import { useAuth } from '@/context/AuthContext';
 
 const GroupsScreen: React.FC = () => {
   const [groups, setGroups] = useState<Group[]>([]);
@@ -54,7 +54,7 @@ const GroupsScreen: React.FC = () => {
 
   const openGroup = (group: Group) => {
     router.push({
-      pathname: "/(app)/groupDetail",
+      pathname: "/(app)/group-detail",
       params: {
         groupId: group.id.toString(),
         groupName: group.name,
@@ -196,7 +196,7 @@ const GroupsScreen: React.FC = () => {
         {/* <View style={styles.headerActions as StyleProp<ViewStyle>}>
           <TouchableOpacity
             style={styles.headerButton as StyleProp<ViewStyle>}
-            onPress={() => router.push('/(app)/eventGroups')}
+            onPress={() => router.push('/(app)/event-groups')}
             activeOpacity={0.7}
           >
             <FontAwesome name="trophy" size={20} color="#E10600" />

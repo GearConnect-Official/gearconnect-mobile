@@ -3,4 +3,4 @@ import React from 'react';
 
 export default function AuthIndex() {
   return <Redirect href="/(auth)/welcome" />;
-} 
+}

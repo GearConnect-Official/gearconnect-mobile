@@ -1,3 +1,3 @@
-import VerifyScreen from '../src/screens/VerifyScreen';
+import VerifyScreen from '@/screens/VerifyScreen';
 
-export default VerifyScreen; 
+export default VerifyScreen;

@@ -18,7 +18,7 @@ import * as MediaLibrary from 'expo-media-library';
 import * as Location from 'expo-location';
 import * as Calendar from 'expo-calendar';
 import { Audio } from 'expo-av';
-import theme from '../src/styles/config/theme';
+import theme from '@/styles/config/theme';
 
 type PermissionStatus = 'granted' | 'denied' | 'undetermined' | 'checking';
 

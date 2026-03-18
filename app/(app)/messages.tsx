@@ -14,11 +14,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter, useFocusEffect } from 'expo-router';
 import { Swipeable } from 'react-native-gesture-handler';
-import theme from '../src/styles/config/theme';
-import { messagesScreenStyles as styles } from '../src/styles/screens';
-import chatService, { Conversation, MessageRequest } from '../src/services/chatService';
-import { useAuth } from '../src/context/AuthContext';
-import { UserStatus, UserStatusDisplay } from '../src/types/userStatus';
+import theme from '@/styles/config/theme';
+import { messagesScreenStyles as styles } from '@/styles/screens';
+import chatService, { Conversation, MessageRequest } from '@/services/chatService';
+import { useAuth } from '@/context/AuthContext';
+import { UserStatus, UserStatusDisplay } from '@/types/userStatus';
 
 // Tab types
 type TabType = 'messages' | 'requests' | 'commercial';
@@ -169,7 +169,7 @@ export default function MessagesScreen() {
       if (response && 'groupId' in response && response.groupId) {
         // Navigate to group
         router.push({
-          pathname: '/(app)/groupDetail',
+          pathname: '/(app)/group-detail',
           params: {
             groupId: response.groupId.toString(),
           },
@@ -523,7 +523,7 @@ export default function MessagesScreen() {
 
   // Start a new conversation
   const startNewConversation = () => {
-    router.push('/(app)/newConversation');
+    router.push('/(app)/new-conversation');
   };
 
   // Navigate to groups

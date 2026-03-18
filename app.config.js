@@ -6,11 +6,11 @@ export default {
     slug: "gearconnect",
     version: "1.0.0",
     orientation: "portrait",
-    icon: "./app/assets/images/icon.png",
+    icon: "./src/assets/images/icon.png",
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
     splash: {
-      image: "./app/assets/images/splash-icon.png",
+      image: "./src/assets/images/splash-icon.png",
       resizeMode: "contain",
       backgroundColor: "#ffffff"
     },
@@ -34,7 +34,7 @@ export default {
     },
     android: {
       adaptiveIcon: {
-        foregroundImage: "./app/assets/images/adaptive-icon.png",
+        foregroundImage: "./src/assets/images/adaptive-icon.png",
         backgroundColor: "#ffffff"
       },
       package: "com.gearconnect.app",
@@ -54,11 +54,6 @@ export default {
         "android.permission.POST_NOTIFICATIONS",
         "android.permission.AUDIO_RECORD"
       ]
-    },
-    web: {
-      bundler: "metro",
-      output: "static",
-      favicon: "./app/assets/images/favicon.png"
     },
     extra: {
       apiProtocol: process.env.API_PROTOCOL,
@@ -81,7 +76,7 @@ export default {
       [
         "expo-splash-screen",
         {
-          image: "./app/assets/images/splash-icon.png",
+          image: "./src/assets/images/splash-icon.png",
           imageWidth: 200,
           resizeMode: "contain",
           backgroundColor: "#ffffff"
@@ -116,4 +111,4 @@ export default {
       typedRoutes: true
     }
   }
-}; 
+};

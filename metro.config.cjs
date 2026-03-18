@@ -2,16 +2,12 @@
 const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');
 
-// Get project root - use process.cwd() which works in all Node.js environments
 const projectRoot = process.cwd();
 
 /** @type {import('expo/metro-config').MetroConfig} */
-const config = getDefaultConfig(projectRoot, {
-  // [Web-only]: Enables CSS support for Expo router.
-  isCSSEnabled: true,
-});
+const config = getDefaultConfig(projectRoot);
 
-// Fix for module resolution issues - ensure proper node_modules resolution
+// Ensure proper node_modules resolution
 config.resolver = {
   ...config.resolver,
   nodeModulesPaths: [
@@ -22,4 +18,4 @@ config.resolver = {
   },
 };
 
-module.exports = config; 
+module.exports = config;

@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { useAuth } from '../src/context/AuthContext';
-import SharedConversationScreen from '../src/components/messaging/SharedConversationScreen';
-import chatService from '../src/services/chatService';
-import { UserStatus, UserStatusDisplay } from '../src/types/userStatus';
-import MuteModal, { MuteDuration } from '../src/components/messaging/MuteModal';
+import { useAuth } from '@/context/AuthContext';
+import SharedConversationScreen from '@/components/messaging/SharedConversationScreen';
+import chatService from '@/services/chatService';
+import { UserStatus, UserStatusDisplay } from '@/types/userStatus';
+import MuteModal, { MuteDuration } from '@/components/messaging/MuteModal';
 import { TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import theme from '../src/styles/config/theme';
-import { conversationScreenStyles as styles } from '../src/styles/screens';
+import theme from '@/styles/config/theme';
+import { conversationScreenStyles as styles } from '@/styles/screens';
 
 // UI display type for status
 type UserStatusDisplayType = 'Online' | 'Offline' | 'Do not disturb';
@@ -34,7 +34,7 @@ export default function ConversationScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { user } = useAuth() || {};
-  
+
   const conversationId = params.conversationId as string;
   const conversationName = params.conversationName as string || 'Conversation';
   const currentUserId = user?.id ? parseInt(user.id.toString()) : undefined;
@@ -46,7 +46,7 @@ export default function ConversationScreen() {
   // Load participant status
   const loadParticipantStatus = useCallback(async () => {
     if (!conversationId || !currentUserId) return;
-    
+
     try {
       const conversationIdNum = parseInt(conversationId);
       if (isNaN(conversationIdNum)) return;
@@ -76,23 +76,23 @@ export default function ConversationScreen() {
   }, [conversationId, currentUserId, loadParticipantStatus]);
 
   if (!currentUserId || !conversationId) {
-                        return null;
-                      }
-                      
-                    return (
+    return null;
+  }
+
+  return (
     <SharedConversationScreen
       type="dm"
       conversationId={conversationId}
       conversationName={conversationName}
-                      currentUserId={currentUserId}
+      currentUserId={currentUserId}
       headerSubtitle={getStatusText(userStatus)}
       headerSubtitleColor={getStatusColor(userStatus)}
       renderHeaderActions={() => (
-          <TouchableOpacity 
-            style={styles.headerActionButton}
+        <TouchableOpacity
+          style={styles.headerActionButton}
           onPress={() => setShowMuteModal(true)}
-            activeOpacity={0.7}
-          >
+          activeOpacity={0.7}
+        >
           <FontAwesome name={isMuted ? "volume-off" : "volume-up"} size={20} color={theme.colors.text.secondary} />
         </TouchableOpacity>
       )}
@@ -102,8 +102,8 @@ export default function ConversationScreen() {
           onClose={() => setShowMuteModal(false)}
           onSelectDuration={async (duration: MuteDuration) => {
             if (!conversationId || !currentUserId) return;
-          try {
-            const conversationIdNum = parseInt(conversationId);
+            try {
+              const conversationIdNum = parseInt(conversationId);
               await chatService.muteConversation(conversationIdNum, currentUserId, duration);
               setIsMuted(true);
             } catch (error) {
@@ -113,8 +113,8 @@ export default function ConversationScreen() {
           isMuted={isMuted}
           onUnmute={async () => {
             if (!conversationId || !currentUserId) return;
-          try {
-            const conversationIdNum = parseInt(conversationId);
+            try {
+              const conversationIdNum = parseInt(conversationId);
               await chatService.unmuteConversation(conversationIdNum, currentUserId);
               setIsMuted(false);
             } catch (error) {
