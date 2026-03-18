@@ -1,6 +1,6 @@
 import { Redirect } from 'expo-router';
-import { useAuth } from './src/context/AuthContext';
-import LoadingScreen from './src/screens/LoadingScreen';
+import { useAuth } from '@/context/AuthContext';
+import LoadingScreen from '@/screens/common/LoadingScreen';
 
 export default function Index() {
   const { isAuthenticated, isLoading } = useAuth();

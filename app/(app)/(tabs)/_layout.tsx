@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import BottomNav from '../../src/components/ui/BottomNav';
+import BottomNav from '@/components/ui/BottomNav';
 import React from 'react';
 
 export default function TabsLayout() {
@@ -13,4 +13,4 @@ export default function TabsLayout() {
       <Tabs.Screen name="events" />
     </Tabs>
   );
-} 
+}

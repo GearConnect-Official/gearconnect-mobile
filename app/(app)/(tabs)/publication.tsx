@@ -1,3 +1,3 @@
-import PublicationScreen from '../../src/screens/PublicationScreen';
+import PublicationScreen from '@/screens/feed/PublicationScreen';
 
-export default PublicationScreen; 
+export default PublicationScreen;

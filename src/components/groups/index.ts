@@ -1,0 +1,1 @@
+export { GroupMemberItem } from './GroupMemberItem';

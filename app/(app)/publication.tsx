@@ -1,6 +1,6 @@
 import React from 'react';
-import PublicationScreen from '../src/screens/PublicationScreen';
+import PublicationScreen from '@/screens/feed/PublicationScreen';
 
 export default function Publication() {
   return <PublicationScreen />;
-} 
+}
