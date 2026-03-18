@@ -17,7 +17,7 @@ import { MixpanelProvider } from '@/context/MixpanelContext';
 import { keepAwakeService } from '@/services/keepAwakeService';
 
 import useNetworkStatus from '@/hooks/useNetworkStatus';
-import LoadingScreen from '@/screens/LoadingScreen';
+import LoadingScreen from '@/screens/common/LoadingScreen';
 import Constants from 'expo-constants';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';

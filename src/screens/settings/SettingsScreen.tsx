@@ -14,7 +14,7 @@ import { useRouter } from 'expo-router';
 import { useAuth } from '@/context/AuthContext';
 import { useMessage } from '@/context/MessageContext';
 import MessageService from '@/services/messageService';
-import { MessageType } from '@/types/messages';
+import { MessageType } from '@/types/message.types';
 import styles, { colors } from '@/styles/screens/user/settingsStyles';
 
 

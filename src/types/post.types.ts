@@ -1,4 +1,4 @@
-import { GroupUser } from '@/types/group';
+import { GroupUser } from '@/types/group.types';
 
 export interface PostMedia {
   id: number;

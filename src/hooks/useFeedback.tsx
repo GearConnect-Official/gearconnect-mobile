@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { FeedbackType } from '@/components/ui/FeedbackMessage';
 import { ApiError, ErrorType, handleApiError } from '@/services/axiosConfig';
-import { MessageConfig, ConfirmationConfig, MessageType } from '@/types/messages';
+import { MessageConfig, ConfirmationConfig, MessageType } from '@/types/message.types';
 import MessageService from '@/services/messageService';
 
 interface FeedbackState {

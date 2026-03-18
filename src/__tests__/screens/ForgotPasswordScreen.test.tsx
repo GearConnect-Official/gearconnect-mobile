@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
 import { useSignIn, useAuth } from '@clerk/clerk-expo';
-import ForgotPasswordScreen from '@/screens/ForgotPasswordScreen';
+import ForgotPasswordScreen from '@/screens/auth/ForgotPasswordScreen';
 
 // Mock Expo Router
 jest.mock('expo-router', () => ({

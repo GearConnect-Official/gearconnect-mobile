@@ -1,3 +1,3 @@
-import FollowListScreen from '@/screens/FollowListScreen';
+import FollowListScreen from '@/screens/profile/FollowListScreen';
 
 export default FollowListScreen;

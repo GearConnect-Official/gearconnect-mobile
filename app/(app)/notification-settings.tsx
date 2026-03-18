@@ -12,7 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useMessage } from '@/context/MessageContext';
-import { MessageType } from '@/types/messages';
+import { MessageType } from '@/types/message.types';
 import styles, { colors } from '@/styles/screens/user/settingsStyles';
 
 interface SettingsSectionProps {

@@ -10,7 +10,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { ConfirmationConfig } from '@/types/messages';
+import { ConfirmationConfig } from '@/types/message.types';
 import MessageAnimations from '@/styles/animations/messageAnimations';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');

@@ -1,4 +1,4 @@
-import CreateReviewScreen from '@/screens/CreateReviewScreen';
+import CreateReviewScreen from '@/screens/events/CreateReviewScreen';
 import React from 'react';
 
 export default function CreateEventReview() {

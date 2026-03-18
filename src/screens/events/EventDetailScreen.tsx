@@ -16,7 +16,7 @@ import * as Clipboard from 'expo-clipboard';
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
-import { EventInterface } from '@/services/EventInterface';
+import { EventInterface } from '@/types/event.types';
 import { styles } from '@/styles/screens/events/eventDetailStyles';
 import {
   API_URL_EVENTS,

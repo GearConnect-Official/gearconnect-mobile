@@ -1,29 +1,42 @@
-export { default as AddPerformanceScreen } from './AddPerformanceScreen';
-export { default as AuthScreen } from './AuthScreen';
-export { default as CreateEventScreen } from './CreateEventScreen';
-export { default as CreateJobOfferScreen } from './CreateJobOfferScreen';
-export { default as CreateReviewScreen } from './CreateReviewScreen';
-export { default as EditEventScreen } from './EditEventScreen';
-export { default as EditProfileScreen } from './EditProfileScreen';
-export { default as EventDetailScreen } from './EventDetailScreen';
-export { default as EventsScreen } from './EventsScreen';
-export { default as FavoritesScreen } from './FavoritesScreen';
-export { default as FollowListScreen } from './FollowListScreen';
-export { default as ForgotPasswordScreen } from './ForgotPasswordScreen';
-export { default as FriendRequestScreen } from './FriendRequestScreen';
-export { default as HomeScreen } from './HomeScreen';
-export { default as JobsScreen } from './JobsScreen';
-export { default as LoadingScreen } from './LoadingScreen';
-export { default as ModifyReviewScreen } from './ModifyReviewScreen';
-export { default as PerformancesScreen } from './PerformancesScreen';
-export { default as PrivacySettingsScreen } from './PrivacySettingsScreen';
-export { default as ProductListScreen } from './ProductListScreen';
-export { default as ProfileScreen } from './ProfileScreen';
-export { default as PublicationScreen } from './PublicationScreen';
-export { default as RegisterScreen } from './RegisterScreen';
-export { default as SelectEventScreen } from './SelectEventScreen';
-export { default as SettingsScreen } from './SettingsScreen';
-export { default as TermsAndConditionsScreen } from './TermsAndConditionsScreen';
-export { default as UserSearchScreen } from './UserSearchScreen';
-export { default as VerifyScreen } from './VerifyScreen';
-export { default as WelcomeScreen } from './WelcomeScreen';
+// Auth screens
+export { default as AuthScreen } from './auth/AuthScreen';
+export { default as RegisterScreen } from './auth/RegisterScreen';
+export { default as ForgotPasswordScreen } from './auth/ForgotPasswordScreen';
+export { default as WelcomeScreen } from './auth/WelcomeScreen';
+
+// Event screens
+export { default as CreateEventScreen } from './events/CreateEventScreen';
+export { default as EditEventScreen } from './events/EditEventScreen';
+export { default as EventDetailScreen } from './events/EventDetailScreen';
+export { default as EventsScreen } from './events/EventsScreen';
+export { default as SelectEventScreen } from './events/SelectEventScreen';
+export { default as CreateReviewScreen } from './events/CreateReviewScreen';
+export { default as ModifyReviewScreen } from './events/ModifyReviewScreen';
+
+// Feed screens
+export { default as HomeScreen } from './feed/HomeScreen';
+export { default as PublicationScreen } from './feed/PublicationScreen';
+
+// Profile screens
+export { default as ProfileScreen } from './profile/ProfileScreen';
+export { default as EditProfileScreen } from './profile/EditProfileScreen';
+export { default as UserSearchScreen } from './profile/UserSearchScreen';
+export { default as FollowListScreen } from './profile/FollowListScreen';
+export { default as FriendRequestScreen } from './profile/FriendRequestScreen';
+
+// Jobs screens
+export { default as JobsScreen } from './jobs/JobsScreen';
+export { default as CreateJobOfferScreen } from './jobs/CreateJobOfferScreen';
+export { default as PerformancesScreen } from './jobs/PerformancesScreen';
+export { default as AddPerformanceScreen } from './jobs/AddPerformanceScreen';
+
+// Settings screens
+export { default as SettingsScreen } from './settings/SettingsScreen';
+export { default as PrivacySettingsScreen } from './settings/PrivacySettingsScreen';
+export { default as VerifyScreen } from './settings/VerifyScreen';
+export { default as TermsAndConditionsScreen } from './settings/TermsAndConditionsScreen';
+
+// Common screens
+export { default as LoadingScreen } from './common/LoadingScreen';
+export { default as FavoritesScreen } from './common/FavoritesScreen';
+export { default as ProductListScreen } from './common/ProductListScreen';

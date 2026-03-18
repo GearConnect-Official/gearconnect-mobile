@@ -38,7 +38,7 @@ import AppointmentCard, { AppointmentData } from './AppointmentCard';
 import AppointmentCreator from './AppointmentCreator';
 import GroupInviteCard, { GroupInviteData } from './GroupInviteCard';
 import * as DocumentPicker from 'expo-document-picker';
-import { UserStatus, UserStatusDisplay } from '@/types/userStatus';
+import { UserStatus, UserStatusDisplay } from '@/types/userStatus.types';
 import MuteModal, { MuteDuration } from './MuteModal';
 import { useAuth } from '@/context/AuthContext';
 import { cloudinaryService } from '@/services/cloudinary.service';

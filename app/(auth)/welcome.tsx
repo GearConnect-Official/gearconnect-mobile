@@ -1,3 +1,3 @@
-import WelcomeScreen from '@/screens/WelcomeScreen';
+import WelcomeScreen from '@/screens/auth/WelcomeScreen';
 
 export default WelcomeScreen;

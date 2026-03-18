@@ -1,3 +1,3 @@
-import UserSearchScreen from '@/screens/UserSearchScreen';
+import UserSearchScreen from '@/screens/profile/UserSearchScreen';
 
 export default UserSearchScreen;

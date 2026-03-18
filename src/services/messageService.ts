@@ -1,4 +1,4 @@
-import { MessageType, MessageConfig, ConfirmationConfig } from '@/types/messages';
+import { MessageType, MessageConfig, ConfirmationConfig } from '@/types/message.types';
 
 /**
  * Centralized service for all application messages

@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import { Alert, AppState } from 'react-native';
 import chatService, { Message as ApiMessage } from '@/services/chatService';
 import groupService from '@/services/groupService';
-import { UserStatus } from '@/types/userStatus';
+import { UserStatus } from '@/types/userStatus.types';
 
 export type Message = ApiMessage & {
   isOwn?: boolean;

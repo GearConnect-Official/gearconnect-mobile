@@ -15,7 +15,7 @@ import { useAuth } from '@/context/AuthContext';
 import SharedConversationScreen from '@/components/messaging/SharedConversationScreen';
 import groupService, { GroupDetails } from '@/services/groupService';
 import { CloudinaryAvatar } from '@/components/media/CloudinaryImage';
-import { UserStatus, UserStatusDisplay } from '@/types/userStatus';
+import { UserStatus, UserStatusDisplay } from '@/types/userStatus.types';
 import theme from '@/styles/config/theme';
 import { conversationScreenStyles as styles } from '@/styles/screens';
 import GroupInviteModal from '@/components/messaging/GroupInviteModal';

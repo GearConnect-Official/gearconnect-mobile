@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { ProfilePicture } from '@/components/ui/ProfilePicture';
-import { Story } from '@/types/story';
+import { Story } from '@/types/story.types';
 import { CloudinaryAvatar } from '@/components/media/CloudinaryImage';
 
 interface StoryViewerProps {

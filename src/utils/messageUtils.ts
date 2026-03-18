@@ -1,5 +1,5 @@
 import MessageService from '@/services/messageService';
-import { MessageType } from '@/types/messages';
+import { MessageType } from '@/types/message.types';
 
 /**
  * Utilities to simplify usage of centralized messages

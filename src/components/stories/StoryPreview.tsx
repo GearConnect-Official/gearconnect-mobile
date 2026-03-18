@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { ProfilePicture } from '@/components/ui/ProfilePicture';
-import { StoryGroup } from '@/types/story';
+import { StoryGroup } from '@/types/story.types';
 
 interface StoryPreviewProps {
   storyGroup: StoryGroup;

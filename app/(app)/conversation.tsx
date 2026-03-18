@@ -3,7 +3,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useAuth } from '@/context/AuthContext';
 import SharedConversationScreen from '@/components/messaging/SharedConversationScreen';
 import chatService from '@/services/chatService';
-import { UserStatus, UserStatusDisplay } from '@/types/userStatus';
+import { UserStatus, UserStatusDisplay } from '@/types/userStatus.types';
 import MuteModal, { MuteDuration } from '@/components/messaging/MuteModal';
 import { TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_URL_MESSAGING } from '@/config';
-import { UserStatus } from '@/types/userStatus';
+import { UserStatus } from '@/types/userStatus.types';
 
 // Types for messaging
 export interface MessageUser {

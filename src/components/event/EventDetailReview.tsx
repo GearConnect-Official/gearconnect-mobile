@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useRouter } from 'expo-router';
 import { eventDetailStyles as styles } from '@/styles/screens';
-import { EventInterface } from '@/services/EventInterface';
+import { EventInterface } from '@/types/event.types';
 
 // Create a star rating component
 const StarRating: React.FC<{ rating: number; maxRating?: number }> = ({

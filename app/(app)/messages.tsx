@@ -18,7 +18,7 @@ import theme from '@/styles/config/theme';
 import { messagesScreenStyles as styles } from '@/styles/screens';
 import chatService, { Conversation, MessageRequest } from '@/services/chatService';
 import { useAuth } from '@/context/AuthContext';
-import { UserStatus, UserStatusDisplay } from '@/types/userStatus';
+import { UserStatus, UserStatusDisplay } from '@/types/userStatus.types';
 
 // Tab types
 type TabType = 'messages' | 'requests' | 'commercial';

@@ -1,3 +1,3 @@
-import CreateJobOfferScreen from '@/screens/CreateJobOfferScreen';
+import CreateJobOfferScreen from '@/screens/jobs/CreateJobOfferScreen';
 
 export default CreateJobOfferScreen;

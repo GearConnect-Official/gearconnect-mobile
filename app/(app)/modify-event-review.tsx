@@ -1,4 +1,4 @@
-import ModifyReviewScreen from '@/screens/ModifyReviewScreen';
+import ModifyReviewScreen from '@/screens/events/ModifyReviewScreen';
 import React from 'react';
 
 export default function ModifyEventReview() {
