@@ -38,6 +38,7 @@ export default {
         backgroundColor: "#ffffff"
       },
       package: "com.gearconnect.app",
+      privacyPolicyUrl: "https://gearconnect.app/privacy-policy",
       permissions: [
         "android.permission.READ_CONTACTS",
         "android.permission.ACCESS_FINE_LOCATION",
