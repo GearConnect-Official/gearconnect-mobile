@@ -29,16 +29,14 @@ export interface CloudinaryUploadOptions {
 class CloudinaryService {
   private cloudName: string;
   private uploadPreset: string;
-  private apiKey: string;
 
   constructor() {
     if (!cloudinaryConfig.cloudName || !cloudinaryConfig.uploadPreset) {
       throw new Error('Cloudinary configuration is missing. Please check your environment variables.');
     }
-    
+
     this.cloudName = cloudinaryConfig.cloudName;
     this.uploadPreset = cloudinaryConfig.uploadPreset;
-    this.apiKey = cloudinaryConfig.apiKey || '';
   }
 
   /**
@@ -174,35 +172,6 @@ class CloudinaryService {
     );
 
     return Promise.all(uploadPromises);
-  }
-
-  /**
-   * Supprime un média de Cloudinary
-   */
-  async deleteMedia(publicId: string, resourceType: 'image' | 'video' = 'image'): Promise<boolean> {
-    try {
-      const formData = new FormData();
-      formData.append('public_id', publicId);
-      formData.append('api_key', this.apiKey);
-      
-      // Génération de la signature (pour la production, ceci devrait être fait côté serveur)
-      const timestamp = Math.round(new Date().getTime() / 1000);
-      formData.append('timestamp', timestamp.toString());
-
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${this.cloudName}/${resourceType}/destroy`,
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
-
-      const result = await response.json();
-      return result.result === 'ok';
-    } catch (error) {
-      console.error('Erreur lors de la suppression du média:', error);
-      return false;
-    }
   }
 
   /**

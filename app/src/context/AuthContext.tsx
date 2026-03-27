@@ -104,6 +104,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  // Stocker le token Clerk dans AsyncStorage pour que l'intercepteur axios le lise
+  const storeClerkToken = async () => {
+    try {
+      const token = await clerk.session?.getToken();
+      if (token) {
+        await AsyncStorage.setItem(AUTH_TOKEN_KEY, token);
+        console.log('🔑 Token Clerk stocké');
+      }
+    } catch (e) {
+      console.warn('⚠️ Impossible de stocker le token Clerk:', e);
+    }
+  };
+
   // Get current user details from backend
   const getCurrentUser = useCallback(async (): Promise<User | null> => {
     try {
@@ -219,6 +232,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
                 setUser(validUser);
                 setIsAuthenticated(true);
                 await saveUserToStorage(validUser);
+                await storeClerkToken();
                 console.log('✅ Session Clerk synchronisée');
               } else if (mounted) {
                 // Fallback to Clerk data if backend is not available
@@ -393,6 +407,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       });
 
       if (signInAttempt.status === "complete") {
+        // Stocker le token Clerk pour les requêtes API
+        await storeClerkToken();
+
         const userDetails = backendResponse.user || await getCurrentUser();
         if (userDetails) {
           const validUser: User = {
