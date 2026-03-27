@@ -22,6 +22,7 @@ import PerformanceService from "../services/performanceService";
 import eventService from "../services/eventService";
 import { countEventsWithMissingInfo } from "../utils/eventMissingInfo";
 import { trackScreenView } from "../utils/mixpanelTracking";
+import theme from "../styles/config/theme";
 
 const { width } = Dimensions.get("window");
 
@@ -470,6 +471,13 @@ const EventsScreen: React.FC = () => {
           </TouchableOpacity>
           <Text style={styles.title}>Events</Text>
           <View style={styles.topBarIcons}>
+            <TouchableOpacity
+              style={styles.mapButton}
+              onPress={() => router.push('/(app)/eventMap')}
+            >
+              <FontAwesome name="map" size={16} color={theme.colors.primary.main} />
+              <Text style={styles.mapButtonText}>Carte</Text>
+            </TouchableOpacity>
             <TouchableOpacity
               style={styles.createButton}
               onPress={handleCreateEvent}

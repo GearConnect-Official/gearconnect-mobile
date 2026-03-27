@@ -25,6 +25,7 @@ export default function AppLayout() {
       <Stack.Screen name="publication" />
       <Stack.Screen name="performances" />
       <Stack.Screen name="addPerformance" />
+      <Stack.Screen name="eventMap" />
     </Stack>
   );
 } 

@@ -165,6 +165,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  // Map button
+  mapButton: {
+    borderRadius: 20,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    borderWidth: 1.5,
+    borderColor: theme.colors.primary.main,
+    backgroundColor: "#fff",
+  },
+  mapButtonText: {
+    color: theme.colors.primary.main,
+    fontWeight: "600",
+    fontSize: 13,
+  },
+
   // Create button
   createButton: {
     backgroundColor: theme.colors.primary.main,
