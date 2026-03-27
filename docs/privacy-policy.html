@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de Confidentialité – GearConnect</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1a1a2e;
+      --accent: #e94560;
+      --text: #333;
+      --muted: #666;
+      --bg: #f9f9fb;
+      --card: #ffffff;
+      --border: #e8e8ec;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 60px 24px 40px;
+      text-align: center;
+    }
+    header .logo {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    header .logo span { color: var(--accent); }
+    header p {
+      margin-top: 10px;
+      color: #aab;
+      font-size: 0.95rem;
+    }
+    header .badge {
+      display: inline-block;
+      margin-top: 16px;
+      background: rgba(233,69,96,0.15);
+      border: 1px solid rgba(233,69,96,0.4);
+      color: #ff8fa3;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .toc h2 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+    .toc ol {
+      padding-left: 18px;
+    }
+    .toc li {
+      margin-bottom: 6px;
+    }
+    .toc a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .toc a:hover { text-decoration: underline; }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2 .num {
+      background: var(--accent);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      min-width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 22px 0 10px;
+      color: var(--primary);
+    }
+
+    p { margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      margin: 10px 0 14px 20px;
+    }
+    li { margin-bottom: 6px; }
+
+    .highlight {
+      background: #fff8e1;
+      border-left: 4px solid #ffc107;
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      margin: 16px 0;
+      font-size: 0.93rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+    th {
+      background: var(--primary);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f5f5f8; }
+
+    .pill {
+      display: inline-block;
+      background: #eef;
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid #dde;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+      color: white;
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      margin-bottom: 24px;
+    }
+    .contact-box h2 {
+      color: white;
+      border-bottom-color: rgba(255,255,255,0.2);
+    }
+    .contact-box a { color: #ff8fa3; }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 22px 18px; }
+      .contact-box { padding: 22px 18px; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Gear<span>Connect</span></div>
+  <p>Application mobile de mise en relation autour du matériel sportif</p>
+  <div class="badge">Politique de Confidentialité</div>
+</header>
+
+<main>
+
+  <!-- Intro -->
+  <section style="border-left: 4px solid var(--accent);">
+    <p><strong>Dernière mise à jour :</strong> 27 mars 2026</p>
+    <p>
+      La présente politique de confidentialité décrit la manière dont <strong>GearConnect</strong>
+      (« nous », « notre ») collecte, utilise, stocke et protège vos données personnelles lorsque
+      vous utilisez notre application mobile et nos services associés.
+    </p>
+    <p>
+      Nous nous engageons à protéger votre vie privée et à traiter vos données conformément au
+      <strong>Règlement Général sur la Protection des Données (RGPD)</strong> et à la législation
+      française applicable.
+    </p>
+    <div class="highlight">
+      En utilisant GearConnect, vous acceptez les pratiques décrites dans la présente politique.
+      Si vous n'acceptez pas ces conditions, veuillez cesser d'utiliser notre application.
+    </div>
+  </section>
+
+  <!-- Table des matières -->
+  <div class="toc">
+    <h2>Table des matières</h2>
+    <ol>
+      <li><a href="#responsable">Responsable du traitement</a></li>
+      <li><a href="#données-collectées">Données collectées</a></li>
+      <li><a href="#permissions">Autorisations de l'appareil</a></li>
+      <li><a href="#finalités">Finalités et bases légales</a></li>
+      <li><a href="#tiers">Services tiers et sous-traitants</a></li>
+      <li><a href="#conservation">Durée de conservation</a></li>
+      <li><a href="#sécurité">Sécurité des données</a></li>
+      <li><a href="#transferts">Transferts internationaux</a></li>
+      <li><a href="#droits">Vos droits</a></li>
+      <li><a href="#mineurs">Mineurs</a></li>
+      <li><a href="#modifications">Modifications de la politique</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <!-- 1. Responsable -->
+  <section id="responsable">
+    <h2><span class="num">1</span> Responsable du traitement</h2>
+    <p>
+      Le responsable du traitement de vos données personnelles est :
+    </p>
+    <ul>
+      <li><strong>Nom :</strong> GearConnect</li>
+      <li><strong>Application :</strong> GearConnect (com.gearconnect.app)</li>
+      <li><strong>Email :</strong> <a href="mailto:privacy@gearconnect.fr">privacy@gearconnect.fr</a></li>
+    </ul>
+    <p>
+      Pour toute question relative à la protection de vos données, vous pouvez nous contacter
+      à l'adresse indiquée à la section <a href="#contact">Contact</a>.
+    </p>
+  </section>
+
+  <!-- 2. Données collectées -->
+  <section id="données-collectées">
+    <h2><span class="num">2</span> Données collectées</h2>
+
+    <h3>2.1 Données d'inscription et de profil</h3>
+    <ul>
+      <li>Adresse e-mail</li>
+      <li>Nom d'utilisateur (pseudonyme)</li>
+      <li>Prénom et nom</li>
+      <li>Mot de passe (géré exclusivement et de manière sécurisée par Clerk)</li>
+      <li>Photo de profil (optionnelle)</li>
+      <li>Biographie / description (optionnelle)</li>
+      <li>Paramètres de confidentialité du compte (visibilité du profil, des e-mails, de l'activité)</li>
+    </ul>
+
+    <h3>2.2 Données de contenu et d'activité sociale</h3>
+    <ul>
+      <li>Publications, commentaires, réactions et partages</li>
+      <li>Relations sociales (abonnés, abonnements, amis)</li>
+      <li>Participations à des groupes et événements</li>
+      <li>Avis et notes sur les événements</li>
+      <li>Favoris sauvegardés</li>
+      <li>Performances et réalisations</li>
+    </ul>
+
+    <h3>2.3 Données de messagerie</h3>
+    <ul>
+      <li>Messages texte, médias, pièces jointes et messages vocaux</li>
+      <li>Métadonnées des messages (expéditeur, destinataire, horodatage, statut de lecture)</li>
+      <li>Réactions aux messages</li>
+      <li>Paramètres de conversation (silence, archivage)</li>
+    </ul>
+
+    <h3>2.4 Données de localisation</h3>
+    <p>
+      Uniquement lorsque vous choisissez explicitement de partager votre position dans une conversation.
+      Les coordonnées GPS (latitude/longitude) et l'adresse associée sont alors transmises.
+    </p>
+
+    <h3>2.5 Contacts de l'appareil</h3>
+    <p>
+      Uniquement lorsque vous choisissez explicitement de partager un contact via la messagerie.
+      L'application accède temporairement à vos contacts pour vous permettre cette sélection.
+      Aucun contact n'est importé ni stocké en masse sur nos serveurs.
+    </p>
+
+    <h3>2.6 Données du calendrier</h3>
+    <p>
+      Lorsque vous créez ou partagez un rendez-vous depuis l'application, nous accédons à votre
+      calendrier pour lire ou écrire cet événement spécifique.
+    </p>
+
+    <h3>2.7 Données techniques</h3>
+    <ul>
+      <li>Type d'appareil (iOS / Android) et version du système</li>
+      <li>Version de l'application</li>
+      <li>Jetons de session (tokens d'authentification)</li>
+      <li>Journaux d'erreurs et rapports de plantage (via Sentry)</li>
+      <li>Données d'utilisation et de navigation dans l'app (via Mixpanel)</li>
+    </ul>
+  </section>
+
+  <!-- 3. Permissions -->
+  <section id="permissions">
+    <h2><span class="num">3</span> Autorisations de l'appareil</h2>
+    <p>
+      GearConnect demande les autorisations suivantes sur votre appareil. Chaque permission est
+      utilisée uniquement pour la finalité décrite ci-dessous et n'est jamais activée sans votre
+      accord explicite.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Permission</th>
+          <th>Utilisation</th>
+          <th>Obligatoire ?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pill">CAMÉRA</span></td>
+          <td>Prendre des photos et vidéos à partager dans les publications et conversations</td>
+          <td>Optionnelle</td>
+        </tr>
+        <tr>
+          <td><span class="pill">LOCALISATION</span></td>
+          <td>Partager votre position en temps réel dans une conversation (uniquement à votre demande)</td>
+          <td>Optionnelle</td>
+        </tr>
+        <tr>
+          <td><span class="pill">CONTACTS</span></td>
+          <td>Sélectionner et partager un contact spécifique dans une conversation (uniquement à votre demande)</td>
+          <td>Optionnelle</td>
+        </tr>
+        <tr>
+          <td><span class="pill">MICROPHONE</span></td>
+          <td>Enregistrer des messages vocaux dans les conversations</td>
+          <td>Optionnelle</td>
+        </tr>
+        <tr>
+          <td><span class="pill">GALERIE / STOCKAGE</span></td>
+          <td>Accéder à vos photos et vidéos pour les partager ; enregistrer des médias reçus</td>
+          <td>Optionnelle</td>
+        </tr>
+        <tr>
+          <td><span class="pill">CALENDRIER</span></td>
+          <td>Lire et ajouter des rendez-vous partagés dans les conversations</td>
+          <td>Optionnelle</td>
+        </tr>
+        <tr>
+          <td><span class="pill">NOTIFICATIONS</span></td>
+          <td>Recevoir des notifications push pour les messages et activités de l'app</td>
+          <td>Optionnelle</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Vous pouvez gérer ou révoquer ces autorisations à tout moment dans les paramètres de votre
+      appareil ou depuis l'écran « Paramètres de confidentialité » de l'application.
+    </p>
+  </section>
+
+  <!-- 4. Finalités -->
+  <section id="finalités">
+    <h2><span class="num">4</span> Finalités et bases légales du traitement</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Finalité</th>
+          <th>Données concernées</th>
+          <th>Base légale (RGPD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Création et gestion de votre compte</td>
+          <td>Email, nom, mot de passe, profil</td>
+          <td>Exécution du contrat (art. 6.1.b)</td>
+        </tr>
+        <tr>
+          <td>Fourniture des fonctionnalités de l'app (messagerie, publications, événements)</td>
+          <td>Contenu, médias, données sociales</td>
+          <td>Exécution du contrat (art. 6.1.b)</td>
+        </tr>
+        <tr>
+          <td>Envoi de notifications push</td>
+          <td>Identifiant d'appareil</td>
+          <td>Consentement (art. 6.1.a)</td>
+        </tr>
+        <tr>
+          <td>Amélioration de l'application et analyse d'utilisation</td>
+          <td>Données d'usage, identifiants</td>
+          <td>Intérêts légitimes (art. 6.1.f)</td>
+        </tr>
+        <tr>
+          <td>Enregistrement de session (session replay)</td>
+          <td>Interactions écran</td>
+          <td>Consentement (art. 6.1.a)</td>
+        </tr>
+        <tr>
+          <td>Détection et correction d'erreurs techniques</td>
+          <td>Journaux d'erreurs, contexte utilisateur</td>
+          <td>Intérêts légitimes (art. 6.1.f)</td>
+        </tr>
+        <tr>
+          <td>Prévention de la fraude et sécurité</td>
+          <td>Données de connexion, comportements suspects</td>
+          <td>Intérêts légitimes (art. 6.1.f)</td>
+        </tr>
+        <tr>
+          <td>Respect des obligations légales</td>
+          <td>Données demandées par les autorités compétentes</td>
+          <td>Obligation légale (art. 6.1.c)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5. Services tiers -->
+  <section id="tiers">
+    <h2><span class="num">5</span> Services tiers et sous-traitants</h2>
+    <p>
+      Nous faisons appel aux services tiers suivants pour faire fonctionner GearConnect.
+      Chacun de ces prestataires a conclu avec nous un accord de traitement de données conforme
+      au RGPD et ne peut utiliser vos données qu'aux fins définies.
+    </p>
+
+    <h3>Clerk — Authentification</h3>
+    <ul>
+      <li><strong>Rôle :</strong> Gestion de l'authentification, des sessions et des mots de passe</li>
+      <li><strong>Données transmises :</strong> Email, identité de l'utilisateur, tokens de session</li>
+      <li><strong>Localisation :</strong> États-Unis (conforme RGPD, clauses contractuelles types)</li>
+      <li><strong>Politique :</strong> <a href="https://clerk.com/privacy" target="_blank" rel="noopener">clerk.com/privacy</a></li>
+    </ul>
+
+    <h3>Cloudinary — Stockage des médias</h3>
+    <ul>
+      <li><strong>Rôle :</strong> Hébergement, optimisation et diffusion des images et vidéos</li>
+      <li><strong>Données transmises :</strong> Fichiers médias uploadés (photos, vidéos, documents)</li>
+      <li><strong>Localisation :</strong> CDN mondial (données traitées dans plusieurs régions)</li>
+      <li><strong>Politique :</strong> <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener">cloudinary.com/privacy</a></li>
+    </ul>
+
+    <h3>Mixpanel — Analytique et enregistrement de session</h3>
+    <ul>
+      <li><strong>Rôle :</strong> Analyse des comportements utilisateurs, suivi des événements et enregistrement d'écran</li>
+      <li><strong>Données transmises :</strong> Identifiant utilisateur, email, nom, actions dans l'app, interactions écran</li>
+      <li><strong>Localisation :</strong> Serveurs européens (api-eu.mixpanel.com)</li>
+      <li><strong>Note :</strong> Les enregistrements de session masquent automatiquement les champs sensibles (texte, images)</li>
+      <li><strong>Politique :</strong> <a href="https://mixpanel.com/legal/privacy-policy/" target="_blank" rel="noopener">mixpanel.com/legal/privacy-policy</a></li>
+    </ul>
+
+    <h3>Sentry — Suivi des erreurs</h3>
+    <ul>
+      <li><strong>Rôle :</strong> Détection et rapport des erreurs et plantages de l'application</li>
+      <li><strong>Données transmises :</strong> Journaux d'erreurs, traces de pile, contexte utilisateur (uniquement en cas d'erreur)</li>
+      <li><strong>Localisation :</strong> Union Européenne</li>
+      <li><strong>Politique :</strong> <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">sentry.io/privacy</a></li>
+    </ul>
+  </section>
+
+  <!-- 6. Conservation -->
+  <section id="conservation">
+    <h2><span class="num">6</span> Durée de conservation</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Catégorie de données</th>
+          <th>Durée de conservation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Données de compte (profil, email)</td>
+          <td>Jusqu'à suppression du compte + 30 jours</td>
+        </tr>
+        <tr>
+          <td>Publications, commentaires, contenus</td>
+          <td>Jusqu'à suppression par l'utilisateur ou du compte</td>
+        </tr>
+        <tr>
+          <td>Messages privés</td>
+          <td>Jusqu'à suppression de la conversation ou du compte</td>
+        </tr>
+        <tr>
+          <td>Médias uploadés (photos, vidéos)</td>
+          <td>Jusqu'à suppression du contenu associé ou du compte</td>
+        </tr>
+        <tr>
+          <td>Journaux d'erreurs (Sentry)</td>
+          <td>90 jours</td>
+        </tr>
+        <tr>
+          <td>Données analytiques (Mixpanel)</td>
+          <td>13 mois (conformément aux recommandations CNIL)</td>
+        </tr>
+        <tr>
+          <td>Enregistrements de session (Mixpanel)</td>
+          <td>30 jours</td>
+        </tr>
+        <tr>
+          <td>Tokens de session</td>
+          <td>Durée de la session active</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight">
+      <strong>Suppression du compte :</strong> Lors de la suppression de votre compte, vos données
+      personnelles sont anonymisées ou supprimées dans un délai de 30 jours. Certaines données
+      peuvent être conservées plus longtemps si la loi l'exige (par exemple, en cas de litige).
+    </div>
+  </section>
+
+  <!-- 7. Sécurité -->
+  <section id="sécurité">
+    <h2><span class="num">7</span> Sécurité des données</h2>
+    <p>Nous mettons en œuvre les mesures de sécurité suivantes pour protéger vos données :</p>
+    <ul>
+      <li><strong>Chiffrement en transit :</strong> Toutes les communications entre l'application et nos serveurs sont chiffrées via HTTPS/TLS</li>
+      <li><strong>Authentification sécurisée :</strong> Les mots de passe ne sont jamais stockés en clair ni transmis à GearConnect — ils sont gérés exclusivement par Clerk avec hachage sécurisé</li>
+      <li><strong>Jetons JWT :</strong> L'authentification repose sur des jetons à durée limitée, renouvelés automatiquement</li>
+      <li><strong>Stockage local :</strong> Les données mises en cache sur votre appareil bénéficient du chiffrement natif de votre système d'exploitation</li>
+      <li><strong>Accès restreint :</strong> Seuls les membres autorisés de notre équipe ont accès aux données de production, sur la base du principe du moindre privilège</li>
+      <li><strong>Surveillance continue :</strong> Sentry surveille les erreurs et anomalies en temps réel</li>
+    </ul>
+    <p>
+      En cas de violation de données susceptible d'affecter vos droits et libertés, nous nous
+      engageons à vous en informer dans les 72 heures conformément aux obligations du RGPD.
+    </p>
+  </section>
+
+  <!-- 8. Transferts internationaux -->
+  <section id="transferts">
+    <h2><span class="num">8</span> Transferts internationaux de données</h2>
+    <p>Certains de nos sous-traitants sont situés en dehors de l'Union Européenne :</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Prestataire</th>
+          <th>Pays / Région</th>
+          <th>Garantie RGPD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Clerk</td>
+          <td>États-Unis</td>
+          <td>Clauses contractuelles types (CCT) de la Commission européenne</td>
+        </tr>
+        <tr>
+          <td>Cloudinary</td>
+          <td>CDN mondial</td>
+          <td>Clauses contractuelles types (CCT)</td>
+        </tr>
+        <tr>
+          <td>Mixpanel</td>
+          <td>UE (serveurs EU)</td>
+          <td>Traitement au sein de l'UE</td>
+        </tr>
+        <tr>
+          <td>Sentry</td>
+          <td>UE</td>
+          <td>Traitement au sein de l'UE</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 9. Vos droits -->
+  <section id="droits">
+    <h2><span class="num">9</span> Vos droits</h2>
+    <p>
+      Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :
+    </p>
+
+    <h3>Droit d'accès (art. 15)</h3>
+    <p>Vous pouvez demander une copie de toutes les données personnelles que nous détenons sur vous.</p>
+
+    <h3>Droit de rectification (art. 16)</h3>
+    <p>Vous pouvez corriger toute donnée inexacte directement depuis les paramètres de votre profil ou en nous contactant.</p>
+
+    <h3>Droit à l'effacement (art. 17)</h3>
+    <p>Vous pouvez demander la suppression de votre compte et de vos données. La suppression est disponible dans les paramètres de l'application.</p>
+
+    <h3>Droit à la limitation du traitement (art. 18)</h3>
+    <p>Vous pouvez demander la suspension du traitement de vos données dans certains cas (contestation de l'exactitude, opposition en cours, etc.).</p>
+
+    <h3>Droit à la portabilité (art. 20)</h3>
+    <p>Vous pouvez demander l'export de vos données dans un format structuré et lisible par machine.</p>
+
+    <h3>Droit d'opposition (art. 21)</h3>
+    <p>Vous pouvez vous opposer au traitement de vos données fondé sur nos intérêts légitimes (notamment pour les analyses comportementales).</p>
+
+    <h3>Droit de retirer votre consentement</h3>
+    <p>Pour tout traitement fondé sur votre consentement (notifications, enregistrement de session), vous pouvez le retirer à tout moment sans que cela affecte la licéité du traitement antérieur.</p>
+
+    <div class="highlight">
+      <strong>Comment exercer vos droits ?</strong> Contactez-nous à
+      <a href="mailto:privacy@gearconnect.fr">privacy@gearconnect.fr</a>.
+      Nous répondrons dans un délai maximum de <strong>30 jours</strong>.
+    </div>
+
+    <p>
+      Si vous estimez que vos droits ne sont pas respectés, vous pouvez déposer une réclamation
+      auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) :
+      <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>
+    </p>
+  </section>
+
+  <!-- 10. Mineurs -->
+  <section id="mineurs">
+    <h2><span class="num">10</span> Mineurs</h2>
+    <p>
+      GearConnect est destiné aux personnes âgées de <strong>16 ans et plus</strong>.
+      Nous ne collectons pas sciemment de données personnelles concernant des enfants de moins de
+      16 ans. Si vous pensez qu'un enfant de moins de 16 ans nous a communiqué des données
+      personnelles, veuillez nous contacter afin que nous puissions les supprimer.
+    </p>
+  </section>
+
+  <!-- 11. Modifications -->
+  <section id="modifications">
+    <h2><span class="num">11</span> Modifications de la politique</h2>
+    <p>
+      Nous pouvons mettre à jour la présente politique de confidentialité pour refléter des
+      changements dans nos pratiques, nos services ou la réglementation applicable.
+    </p>
+    <p>
+      En cas de modification substantielle, nous vous en informerons par notification dans
+      l'application et/ou par e-mail au moins <strong>14 jours avant</strong> l'entrée en vigueur
+      des changements. La date de dernière mise à jour est toujours indiquée en haut de ce document.
+    </p>
+    <p>
+      La poursuite de l'utilisation de GearConnect après la date d'entrée en vigueur vaut
+      acceptation de la politique révisée.
+    </p>
+  </section>
+
+  <!-- 12. Contact -->
+  <div class="contact-box" id="contact">
+    <h2><span class="num" style="background:rgba(255,255,255,0.2);">12</span> Contact</h2>
+    <p>
+      Pour toute question, demande ou réclamation relative à la protection de vos données
+      personnelles, contactez-nous :
+    </p>
+    <ul style="margin-top:12px;">
+      <li><strong>E-mail :</strong> <a href="mailto:privacy@gearconnect.fr">privacy@gearconnect.fr</a></li>
+      <li><strong>Objet recommandé :</strong> « Demande RGPD – [votre demande] »</li>
+    </ul>
+    <p style="margin-top:16px; color:#aab; font-size:0.9rem;">
+      Nous nous engageons à répondre à toutes les demandes relatives à la protection des données
+      dans un délai de 30 jours calendaires.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 GearConnect — Tous droits réservés</p>
+  <p style="margin-top:6px;">Politique de confidentialité · Version 1.0 · Dernière mise à jour : 27 mars 2026</p>
+</footer>
+
+</body>
+</html>
