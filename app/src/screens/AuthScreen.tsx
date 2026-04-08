@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   Image,
   ActivityIndicator,
@@ -14,6 +13,7 @@ import {
   type TextStyle,
   type ImageStyle,
 } from "react-native";
+import CustomTextInput from "../components/ui/CustomTextInput";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
@@ -134,7 +134,7 @@ const AuthScreen: React.FC = () => {
             </Text>
 
             <View style={authStyles.inputContainer as ViewStyle}>
-              <TextInput
+              <CustomTextInput
                 style={[
                   authStyles.input as TextStyle,
                   (errors.email || isDeletedAccount) && (authStyles.inputError as TextStyle),
@@ -150,6 +150,8 @@ const AuthScreen: React.FC = () => {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 placeholderTextColor="#8391A1"
+                textContentType="emailAddress"
+                autoComplete="email"
               />
               {errors.email && !isDeletedAccount && errors.email.trim() && (
                 <Text style={authStyles.fieldError as TextStyle}>{errors.email}</Text>
@@ -164,7 +166,7 @@ const AuthScreen: React.FC = () => {
                     (authStyles.inputError as ViewStyle),
                 ]}
               >
-                <TextInput
+                <CustomTextInput
                   style={authStyles.passwordInput as TextStyle}
                   placeholder="Enter your password"
                   value={password}
@@ -176,6 +178,8 @@ const AuthScreen: React.FC = () => {
                   }}
                   secureTextEntry={!showPassword}
                   placeholderTextColor="#8391A1"
+                  textContentType="password"
+                  autoComplete="current-password"
                 />
                 <TouchableOpacity
                   onPress={() => setShowPassword(!showPassword)}

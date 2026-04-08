@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   Platform,
@@ -11,6 +10,7 @@ import {
   Animated,
   KeyboardAvoidingView,
 } from "react-native";
+import CustomTextInput from "../components/ui/CustomTextInput";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from "@expo/vector-icons";
 import { useRouter, useFocusEffect } from "expo-router";
@@ -442,7 +442,7 @@ const AddPerformanceScreen: React.FC = () => {
     return (
       <View style={performanceStyles.inputGroup}>
         <Text style={performanceStyles.inputLabel}>{label}</Text>
-        <TextInput
+        <CustomTextInput
           style={[
             performanceStyles.textInput,
             error && performanceStyles.textInputError,

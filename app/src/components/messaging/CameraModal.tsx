@@ -5,7 +5,6 @@ import {
   Modal,
   TouchableOpacity,
   Image,
-  TextInput,
   StyleSheet,
   Alert,
   ActivityIndicator,
@@ -14,6 +13,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import CustomTextInput from '../ui/CustomTextInput';
 import theme from '../../styles/config/theme';
 import { cloudinaryService } from '../../services/cloudinary.service';
 
@@ -173,7 +173,7 @@ const CameraModal: React.FC<CameraModalProps> = ({
           </View>
 
           <View style={styles.captionContainer}>
-            <TextInput
+            <CustomTextInput
               style={styles.captionInput}
               placeholder="Add a caption..."
               placeholderTextColor={theme.colors.text.secondary}

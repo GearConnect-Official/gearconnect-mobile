@@ -1,5 +1,6 @@
 import * as React from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import CustomTextInput from '../ui/CustomTextInput';
 import { FontAwesome } from "@expo/vector-icons";
 import { useRouter, useFocusEffect } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -116,7 +117,7 @@ const BasicInfo: React.FC<BasicInfoProps> = ({
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Event Name*</Text>
-        <TextInput
+        <CustomTextInput
           style={styles.input}
           placeholder="Enter event name"
           value={name}
@@ -160,7 +161,7 @@ const BasicInfo: React.FC<BasicInfoProps> = ({
 
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Location*</Text>
-        <TextInput
+        <CustomTextInput
           style={styles.input}
           placeholder="Enter event location"
           value={location}

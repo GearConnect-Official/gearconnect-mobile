@@ -110,6 +110,13 @@ const styles = StyleSheet.create({  container: {
     fontWeight: "600",
     marginBottom: 8,
   },
+  title:{
+     fontSize: 18,
+    fontWeight: "bold",
+    color: "#1A1A1A",
+    flex: 1,
+    textAlign: "center",
+  },
   profileContainer: {
     flex: 0,
     backgroundColor: THEME_COLORS.background,

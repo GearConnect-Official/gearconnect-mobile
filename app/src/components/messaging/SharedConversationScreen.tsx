@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
@@ -18,6 +17,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
+import CustomTextInput from '../ui/CustomTextInput';
 import { useRouter } from 'expo-router';
 import theme from '../../styles/config/theme';
 import { conversationScreenStyles as styles } from '../../styles/screens';
@@ -1738,7 +1738,7 @@ export default function SharedConversationScreen({
                 <FontAwesome name="plus" size={20} color={theme.colors.text.secondary} />
               </TouchableOpacity>
               
-              <TextInput
+              <CustomTextInput
                 style={styles.textInput}
                 value={newMessage}
                 onChangeText={(text) => {

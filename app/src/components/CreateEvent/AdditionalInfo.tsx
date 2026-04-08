@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { View, Text, TextInput, Image, TouchableOpacity, Modal, TextStyle, ViewStyle } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Modal, TextStyle, ViewStyle } from 'react-native';
+import CustomTextInput from '../ui/CustomTextInput';
 import { FontAwesome } from '@expo/vector-icons';
 import { createEventStyles as styles } from '../../styles/screens';
 import { Event } from '../../services/eventService';
@@ -86,7 +87,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({
       </Text>
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Website</Text>
-        <TextInput
+        <CustomTextInput
           style={styles.input as TextStyle}
           placeholder="www.example.com"
           value={website}
@@ -98,7 +99,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({
       </View>
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Sponsors</Text>
-        <TextInput
+        <CustomTextInput
           style={styles.input as TextStyle}
           placeholder="Sponsor names separated by commas"
           value={sponsors}
@@ -113,7 +114,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({
         <Text style={[styles.label, { fontSize: 12, color: '#666', marginBottom: 4 }]}>
           This tag will appear next to participants&apos; usernames on their profiles
         </Text>
-        <TextInput
+        <CustomTextInput
           style={styles.input as TextStyle}
           placeholder="e.g., Karting Champion 2025"
           value={participationTagText || ''}
@@ -164,7 +165,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({
         <Text style={[styles.label, { fontSize: 12, color: '#666', marginBottom: 4 }]}>
           Name of the circuit/track (will pre-fill for participants)
         </Text>
-        <TextInput
+        <CustomTextInput
           style={styles.input as TextStyle}
           placeholder="e.g., Circuit de Spa-Francorchamps"
           value={meteo?.circuitName || ''}
@@ -181,7 +182,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({
         <Text style={[styles.label, { fontSize: 12, color: '#666', marginBottom: 4 }]}>
           Expected number of participants (will pre-fill for participants)
         </Text>
-        <TextInput
+        <CustomTextInput
           style={styles.input as TextStyle}
           placeholder="e.g., 30"
           value={meteo?.expectedParticipants != null ? String(meteo.expectedParticipants) : ''}
@@ -312,7 +313,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({
                 Or enter custom color (hex):
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                <TextInput
+                <CustomTextInput
                   style={[styles.input as TextStyle, { flex: 1 }]}
                   placeholder="#E10600"
                   value={participationTagColor || ''}

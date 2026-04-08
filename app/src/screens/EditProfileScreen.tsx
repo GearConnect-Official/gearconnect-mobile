@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
@@ -10,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import CustomTextInput from "../components/ui/CustomTextInput";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from "expo-router";
 import userService from "../services/userService";
@@ -277,7 +277,7 @@ const EditProfileScreen: React.FC = () => {
 
           <View style={styles.formSection}>
             <Text style={styles.label}>Username</Text>
-            <TextInput
+            <CustomTextInput
               style={styles.input}
               value={formData.username}
               onChangeText={(text) =>
@@ -288,7 +288,7 @@ const EditProfileScreen: React.FC = () => {
             />
 
             <Text style={styles.label}>Name</Text>
-            <TextInput
+            <CustomTextInput
               style={styles.input}
               value={formData.name}
               onChangeText={(text) =>
@@ -299,7 +299,7 @@ const EditProfileScreen: React.FC = () => {
             />
 
             <Text style={styles.label}>Bio</Text>
-            <TextInput
+            <CustomTextInput
               style={[styles.input, styles.bioInput]}
               value={formData.description}
               onChangeText={(text) =>

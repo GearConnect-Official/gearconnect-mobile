@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  TextInput,
   ScrollView,
   StyleSheet,
   Alert,
@@ -14,6 +13,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import CustomTextInput from '../ui/CustomTextInput';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import theme from '../../styles/config/theme';
 import cloudinaryService from '../../services/cloudinary.service';
@@ -219,7 +219,7 @@ const MediaPicker: React.FC<MediaPickerProps> = ({ onSend, onCancel }) => {
 
       {/* Caption Input */}
       <View style={styles.captionContainer}>
-        <TextInput
+        <CustomTextInput
           style={styles.captionInput}
           placeholder="Add a caption..."
           placeholderTextColor={theme.colors.text.secondary}

@@ -9,8 +9,8 @@ import {
   RefreshControl,
   ActivityIndicator,
   Alert,
-  TextInput,
 } from 'react-native';
+import CustomTextInput from '../components/ui/CustomTextInput';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,17 +20,20 @@ import { FollowUser } from '../types/follow.types';
 import { CloudinaryAvatar } from '../components/media/CloudinaryImage';
 import { useAuth } from '../context/AuthContext';
 import theme from '../styles/config/theme';
+import { set } from 'date-fns';
 
 type TabType = 'followers' | 'following';
 
 const FollowListScreen: React.FC = () => {
-  const { userId, initialTab = 'followers' } = useLocalSearchParams<{
+  const { userId, initialTab = 'followers', username } = useLocalSearchParams<{
     userId: string;
     initialTab?: string;
+    username?: string;
   }>();
   const router = useRouter();
   const { user } = useAuth() || {};
 
+  const [activeTitle, setActiveTitle] = useState(initialTab === 'followers' ? 'Followers' : 'Following');
   const [activeTab, setActiveTab] = useState<TabType>(initialTab as TabType);
   const [followers, setFollowers] = useState<FollowUser[]>([]);
   const [following, setFollowing] = useState<FollowUser[]>([]);
@@ -276,7 +279,7 @@ const FollowListScreen: React.FC = () => {
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <Ionicons name="arrow-back" size={24} color="#000" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Following</Text>
+        <Text style={styles.headerTitle}>{username ? `${username}` : activeTitle}</Text>
         <View style={styles.headerRight} />
       </View>
 
@@ -290,7 +293,7 @@ const FollowListScreen: React.FC = () => {
       <View style={styles.searchContainer}>
         <View style={styles.searchBar}>
           <Ionicons name="search" size={20} color="#9CA3AF" style={styles.searchIcon} />
-          <TextInput
+          <CustomTextInput
             style={styles.searchInput}
             placeholder="Search..."
             placeholderTextColor="#9CA3AF"

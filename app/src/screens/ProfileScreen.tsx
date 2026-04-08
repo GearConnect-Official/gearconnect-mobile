@@ -1239,7 +1239,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
           >
             <FontAwesome name="arrow-left" size={20} color="#1E1E1E" />
           </TouchableOpacity>
-          <Text style={styles.username}>Profile</Text>
+          <Text style={styles.title}>Profile</Text>
           <View style={styles.headerRight}>
             <TouchableOpacity
               style={styles.menuButton}
@@ -1369,7 +1369,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
                     style={styles.statItem}
                     onPress={() => router.push({
                       pathname: '/followList',
-                      params: { userId: effectiveUserId?.toString(), initialTab: 'followers' }
+                      params: { userId: effectiveUserId?.toString(), initialTab: 'followers', username: userData?.username || user?.username }
                     })}
                     disabled={isLoadingFollowStats}
                   >
@@ -1384,7 +1384,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
                     style={styles.statItem}
                     onPress={() => router.push({
                       pathname: '/followList',
-                      params: { userId: effectiveUserId?.toString(), initialTab: 'following' }
+                      params: { userId: effectiveUserId?.toString(), initialTab: 'following', username: userData?.username || user?.username }
                     })}
                     disabled={isLoadingFollowStats}
                   >

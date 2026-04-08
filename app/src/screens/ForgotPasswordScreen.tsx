@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StatusBar,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
 } from "react-native";
+import CustomTextInput from "../components/ui/CustomTextInput";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
@@ -207,7 +207,7 @@ const ForgotPasswordScreen: React.FC = () => {
                 Don&apos;t worry! It happens. Please enter the email address associated with your account.
               </Text>
 
-              <TextInput
+              <CustomTextInput
                 style={styles.input}
                 placeholder="Enter your email"
                 value={email}
@@ -251,7 +251,7 @@ const ForgotPasswordScreen: React.FC = () => {
                     Enter the verification code sent to {email} and your new password.
                   </Text>
 
-                  <TextInput
+                  <CustomTextInput
                     style={styles.input}
                     placeholder="Enter verification code"
                     value={code}
@@ -261,7 +261,7 @@ const ForgotPasswordScreen: React.FC = () => {
                     editable={!isLoading}
                   />
 
-                  <TextInput
+                  <CustomTextInput
                     style={styles.input}
                     placeholder="Enter new password"
                     value={password}

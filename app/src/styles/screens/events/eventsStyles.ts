@@ -28,9 +28,11 @@ const styles = StyleSheet.create({
     paddingTop: STATUSBAR_HEIGHT,
   },
   headerTitle: {
+    color: THEME_COLORS.TEXT_PRIMARY,
     fontSize: 18,
     fontWeight: "700",
-    color: "#1A1A1A",
+    flex: 1,
+    textAlign: "center",
   },
   backButton: {
     marginRight: 15,
@@ -71,8 +73,11 @@ const styles = StyleSheet.create({
     gap: theme.spacing.lg,
   },
   title: {
-    ...theme.typography.h4,
-    color: theme.colors.text.primary,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#1A1A1A",
+    flex: 1,
+    textAlign: "center",
   },
 
   // Hero section

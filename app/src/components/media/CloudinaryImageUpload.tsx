@@ -60,19 +60,19 @@ export const CloudinaryImageUpload: React.FC<CloudinaryImageUploadProps> = ({
 
   const handleUploadOption = () => {
     Alert.alert(
-      "Sélectionner une source",
-      "D'où voulez-vous importer votre image ?",
+      "Select an option",
+      "From where do you want to import your image?",
       [
         {
-          text: "Galerie",
+          text: "Gallery",
           onPress: handleGalleryUpload,
         },
         {
-          text: "Caméra",
+          text: "Camera",
           onPress: handleCameraUpload,
         },
         {
-          text: "Annuler",
+          text: "Cancel",
           style: "cancel",
         },
       ]

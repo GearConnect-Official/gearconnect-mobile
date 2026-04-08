@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   Modal,
   FlatList,
@@ -11,6 +10,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "../../styles/modals/addFriendModalStyles";
+import CustomTextInput from '../ui/CustomTextInput';
 
 interface UserSuggestion {
   id: string;
@@ -98,7 +98,7 @@ const AddFriendModal: React.FC<AddFriendModalProps> = ({
           
           <View style={styles.searchContainer}>
             <FontAwesome name="search" size={20} color="#6A707C" style={styles.searchIcon} />
-            <TextInput
+            <CustomTextInput
               style={styles.searchInput}
               placeholder="Search by name or email..."
               value={searchQuery}

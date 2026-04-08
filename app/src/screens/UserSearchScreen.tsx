@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  TextInput,
   FlatList,
   TouchableOpacity,
   Image,
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import CustomTextInput from '../components/ui/CustomTextInput';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -66,19 +66,17 @@ const UserSearchScreen: React.FC = () => {
       
       if (response.success && response.data) {
         // Filtrer l'utilisateur connecté des résultats
-        const filteredUsers = user && user.id 
-          ? response.data.users.filter(searchUser => searchUser.id !== Number(user.id))
-          : response.data.users;
+        const userSearched = response.data.users
 
-        let usersWithFollowState = filteredUsers.map(user => ({
+        let usersWithFollowState = userSearched.map(user => ({
           ...user,
           isFollowing: false, // Valeur par défaut
         }));
 
         // Vérifier l'état de follow réel si l'utilisateur est connecté
-        if (user && user.id && filteredUsers.length > 0) {
+        if (user && user.id && userSearched.length > 0) {
           const currentUserId = Number(user.id);
-          const userIds = filteredUsers.map(u => u.id);
+          const userIds = userSearched.map(u => u.id);
           
           try {
             const followStatusResponse = await followService.checkFollowingStatus(userIds, currentUserId);
@@ -164,6 +162,14 @@ const UserSearchScreen: React.FC = () => {
     );
   };
 
+  const renderButtonFloow = async(user: SearchUser, query: string, page: number = 1) => {
+    const response = await followService.searchUsers(query.trim(), 20, page);
+    if (response.success && response.data) {
+    const filteredUsers = user && user.id  
+     ? response.data.users.filter((u: SearchUser) => u.id === user.id)
+      : response.data.users;
+    }
+  }
   const renderUserItem = ({ item }: { item: SearchUser }) => (
     <TouchableOpacity
       style={styles.userItem}
@@ -206,7 +212,7 @@ const UserSearchScreen: React.FC = () => {
           )}
         </View>
       </View>
-      
+      {item.id !== Number(user?.id) &&(
       <View style={styles.followButtonContainer}>
         <FollowButton
           targetUserId={item.id}
@@ -218,7 +224,7 @@ const UserSearchScreen: React.FC = () => {
           variant="primary"
           iconOnly={true}
         />
-      </View>
+      </View>)}
     </TouchableOpacity>
   );
 
@@ -237,7 +243,7 @@ const UserSearchScreen: React.FC = () => {
 
     return (
       <View style={styles.emptyState}>
-        <Ionicons name="person-outline" size={64} color="#9CA3AF" />
+        <Ionicons name={'people-outline'} size={64} color="#9CA3AF"/>        
         <Text style={styles.emptyTitle}>No results</Text>
         <Text style={styles.emptyDescription}>
           No users found for "{searchQuery}"
@@ -277,7 +283,7 @@ const UserSearchScreen: React.FC = () => {
       <View style={styles.searchContainer}>
         <View style={styles.searchBar}>
           <Ionicons name="search" size={20} color="#9CA3AF" style={styles.searchIcon} />
-          <TextInput
+          <CustomTextInput
             style={styles.searchInput}
             placeholder="Search users..."
             placeholderTextColor="#9CA3AF"
@@ -358,10 +364,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerTitle: {
-    ...theme.typography.h5,
-    color: theme.colors.text.primary,
+     fontSize: 18,
+    fontWeight: "bold",
+    color: "#1A1A1A",
     flex: 1,
-    textAlign: 'center',
+    textAlign: "center",
   },
   headerRight: {
     width: 40,

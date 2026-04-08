@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ActivityIndicator,
   ScrollView,
@@ -10,6 +9,7 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
+import CustomTextInput from "../components/ui/CustomTextInput";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
@@ -150,7 +150,7 @@ const RegisterScreen: React.FC = () => {
 
             {/* Input fields */}
             <View style={styles.inputContainer}>
-              <TextInput
+              <CustomTextInput
                 style={[
                   styles.input,
                   errors.username ? styles.inputError : null,
@@ -172,7 +172,7 @@ const RegisterScreen: React.FC = () => {
             </View>
 
             <View style={styles.inputContainer}>
-              <TextInput
+              <CustomTextInput
                 style={[styles.input, errors.name ? styles.inputError : null]}
                 placeholder="Name"
                 placeholderTextColor="#8391A1"
@@ -191,7 +191,7 @@ const RegisterScreen: React.FC = () => {
             </View>
 
             <View style={styles.inputContainer}>
-              <TextInput
+              <CustomTextInput
                 style={[styles.input, errors.email ? styles.inputError : null]}
                 placeholder="Email"
                 placeholderTextColor="#8391A1"
@@ -204,6 +204,8 @@ const RegisterScreen: React.FC = () => {
                   }
                 }}
                 onFocus={() => setTimeout(() => scrollViewRef.current?.scrollTo({ y: 460, animated: true }), 100)}
+                textContentType="emailAddress"
+                autoComplete="email"
               />
               {errors.email ? (
                 <Text style={styles.errorText}>{errors.email}</Text>
@@ -211,7 +213,7 @@ const RegisterScreen: React.FC = () => {
             </View>
 
             <View style={styles.inputContainer}>
-              <TextInput
+              <CustomTextInput
                 style={[
                   styles.input,
                   errors.password ? styles.inputError : null,
@@ -227,6 +229,8 @@ const RegisterScreen: React.FC = () => {
                   }
                 }}
                 onFocus={() => setTimeout(() => scrollViewRef.current?.scrollTo({ y: 540, animated: true }), 100)}
+                textContentType="newPassword"
+                autoComplete="new-password"
               />
               {errors.password ? (
                 <Text style={styles.errorText}>{errors.password}</Text>
@@ -234,7 +238,7 @@ const RegisterScreen: React.FC = () => {
             </View>
 
             <View style={styles.inputContainer}>
-              <TextInput
+              <CustomTextInput
                 style={[
                   styles.input,
                   errors.confirmPassword ? styles.inputError : null,
@@ -250,6 +254,8 @@ const RegisterScreen: React.FC = () => {
                   }
                 }}
                 onFocus={() => setTimeout(() => scrollViewRef.current?.scrollTo({ y: 620, animated: true }), 100)}
+                textContentType="newPassword"
+                autoComplete="new-password"
               />
               {errors.confirmPassword ? (
                 <Text style={styles.errorText}>{errors.confirmPassword}</Text>

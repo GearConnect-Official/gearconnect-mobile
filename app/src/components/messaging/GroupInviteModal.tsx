@@ -4,7 +4,6 @@ import {
   Text,
   Modal,
   TouchableOpacity,
-  TextInput,
   FlatList,
   ActivityIndicator,
   Alert,
@@ -13,6 +12,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomTextInput from '../ui/CustomTextInput';
 import { CloudinaryAvatar } from '../media/CloudinaryImage';
 import chatService from '../../services/chatService';
 
@@ -299,7 +299,7 @@ export default function GroupInviteModal({
                 </Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#F3F4F6', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 8, marginBottom: 16 }}>
                   <FontAwesome name="search" size={16} color="#6A707C" />
-                  <TextInput
+                  <CustomTextInput
                     style={{ flex: 1, marginLeft: 8, fontSize: 16, color: '#1F2937' }}
                     placeholder="Search friends..."
                     placeholderTextColor="#9CA3AF"

@@ -5,11 +5,11 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
-  TextInput,
   Modal,
   ActivityIndicator,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import CustomTextInput from '../ui/CustomTextInput';
 import { useRouter } from 'expo-router';
 import relatedProductService, {
   RelatedProduct,
@@ -219,7 +219,7 @@ const RelatedProductsSection: React.FC<RelatedProductsSectionProps> = ({
             </View>
             <View style={styles.formGroup}>
               <Text style={styles.label}>Product Name*</Text>
-              <TextInput
+              <CustomTextInput
                 style={styles.input}
                 placeholder="Enter product name"
                 value={name}
@@ -228,7 +228,7 @@ const RelatedProductsSection: React.FC<RelatedProductsSectionProps> = ({
             </View>
             <View style={styles.formGroup}>
               <Text style={styles.label}>Price*</Text>
-              <TextInput
+              <CustomTextInput
                 style={styles.input}
                 placeholder="Enter price (e.g., 29.99)"
                 value={price}
@@ -238,7 +238,7 @@ const RelatedProductsSection: React.FC<RelatedProductsSectionProps> = ({
             </View>
             <View style={styles.formGroup}>
               <Text style={styles.label}>Purchase Link</Text>
-              <TextInput
+              <CustomTextInput
                 style={styles.input}
                 placeholder="Enter URL"
                 value={link}

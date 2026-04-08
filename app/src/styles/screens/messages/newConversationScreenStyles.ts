@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   headerTitle: {
-    flex: 1,
     fontSize: 18,
-    fontWeight: "600",
-    color: theme.colors.text.primary,
+    fontWeight: "bold",
+    color: "#1A1A1A",
+    flex: 1,
     textAlign: "center",
   },
   nextButton: {

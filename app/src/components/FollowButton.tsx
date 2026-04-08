@@ -46,7 +46,7 @@ const FollowButton: React.FC<FollowButtonProps> = ({
     const currentUserId = Number(user.id);
     
     if (currentUserId === targetUserId) {
-      Alert.alert('Error', 'You cannot follow yourself');
+      Alert.alert('Alert', 'You cannot follow yourself');
       return;
     }
 

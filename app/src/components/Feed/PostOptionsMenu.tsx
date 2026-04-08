@@ -87,7 +87,7 @@ const PostOptionsMenu: React.FC<PostOptionsMenuProps> = ({
     const currentUserId = Number(user.id);
 
     if (currentUserId === postUserId) {
-      Alert.alert('Error', 'You cannot follow/unfollow yourself');
+      Alert.alert('Alert', 'You cannot follow/unfollow yourself');
       onClose();
       return;
     }
