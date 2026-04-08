@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { useAuth } from "../context/AuthContext";
@@ -38,6 +38,9 @@ const PerformancesScreen: React.FC = () => {
   const { user } = useAuth() || {};
 
   // State management
+  const {userId: paramUserId} = useLocalSearchParams<{userId: string}>();
+  const targetUserId = paramUserId ? Number(paramUserId) : user?.id;
+  const isOwnProfile = !paramUserId || String(paramUserId) === String(user?.id);
   const [performances, setPerformances] = useState<Performance[]>([]);
   const [stats, setStats] = useState<UserPerformanceStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -334,17 +337,16 @@ const PerformancesScreen: React.FC = () => {
    * Load performances and statistics
    */
   const loadData = React.useCallback(async () => {
-    if (!user?.id) return;
-
+    if (!targetUserId) return;
     try {
       setIsLoading(true);
 
       const [performancesResponse, statsResponse] = await Promise.all([
         PerformanceService.getUserPerformances(
-          user.id,
+          targetUserId,
           selectedCategory !== "all" ? { category: selectedCategory } : {}
         ),
-        PerformanceService.getUserStats(user.id),
+        PerformanceService.getUserStats(targetUserId),
       ]);
 
       if (performancesResponse.success && performancesResponse.data) {
@@ -363,17 +365,17 @@ const PerformancesScreen: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [user?.id, selectedCategory]);
+  }, [targetUserId, selectedCategory]);
 
   /**
    * Load performances only (for filter changes)
    */
   const loadPerformances = React.useCallback(async () => {
-    if (!user?.id) return;
+    if (!targetUserId) return;
 
     try {
       const response = await PerformanceService.getUserPerformances(
-        user.id,
+        targetUserId,
         selectedCategory !== "all" ? { category: selectedCategory } : {}
       );
 
@@ -383,11 +385,11 @@ const PerformancesScreen: React.FC = () => {
     } catch {
       // Silently fail for filter changes
     }
-  }, [user?.id, selectedCategory]);
+  }, [targetUserId, selectedCategory]);
 
   // Load data on component mount and when returning to screen
   useEffect(() => {
-    if (user?.id) {
+    if (targetUserId) {
       loadData();
       // Animate screen entrance
       Animated.timing(fadeAnim, {
@@ -745,6 +747,7 @@ const PerformancesScreen: React.FC = () => {
           Start tracking your racing performance and see your progress over
           time. Every lap counts on your journey to the podium!
         </Text>
+        {isOwnProfile &&
         <TouchableOpacity
           style={performanceStyles.primaryButton}
           onPress={handleAddPerformance}
@@ -754,7 +757,8 @@ const PerformancesScreen: React.FC = () => {
             Add First Race
           </Text>
         </TouchableOpacity>
-      </View>
+      }
+        </View>
     );
   };
 
@@ -989,12 +993,14 @@ const PerformancesScreen: React.FC = () => {
             />
           </TouchableOpacity> */}
 
+          {isOwnProfile &&
           <TouchableOpacity
             style={performanceStyles.headerButton}
             onPress={handleAddPerformance}
           >
             <FontAwesome name="plus" size={20} color={THEME_COLORS.PRIMARY} />
           </TouchableOpacity>
+          }
         </View>
       </View>
 

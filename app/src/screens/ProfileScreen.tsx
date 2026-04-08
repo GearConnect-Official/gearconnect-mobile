@@ -595,7 +595,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
   };
 
   const handlePerformancesPress = () => {
-    router.push("/performances");
+    router.push({ pathname: "/performances", params: { userId: effectiveUserId} });
   };
 
   const handleSendMessage = async () => {
