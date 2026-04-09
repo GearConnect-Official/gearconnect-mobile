@@ -16,6 +16,7 @@ export const THEME_COLORS = {
   // UI colors
   PRIMARY: "#E10600",
   BACKGROUND: "#FFFFFF",
+  TAB_BACKGROUND: "#c9c9c9ff",
   CARD_BACKGROUND: "#FFFFFF",
   BORDER: "#E1E8ED",
   TEXT_PRIMARY: "#14171A",
@@ -226,7 +227,7 @@ export const performanceStyles = StyleSheet.create({
     paddingHorizontal: LAYOUT.SPACING_MD,
     paddingVertical: LAYOUT.SPACING_SM,
     marginRight: LAYOUT.SPACING_SM,
-    backgroundColor: THEME_COLORS.BACKGROUND,
+    backgroundColor: THEME_COLORS.TAB_BACKGROUND,
     borderRadius: LAYOUT.BUTTON_BORDER_RADIUS,
     borderWidth: 1,
     borderColor: THEME_COLORS.BORDER,

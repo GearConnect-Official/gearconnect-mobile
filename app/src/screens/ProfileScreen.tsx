@@ -10,7 +10,7 @@ import {
   Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, FontAwesome6 } from "@expo/vector-icons";
 import { useRouter, useLocalSearchParams, useFocusEffect } from "expo-router";
 import styles from "../styles/Profile/profileStyles";
 import { useAuth } from "../context/AuthContext";
@@ -595,7 +595,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
   };
 
   const handlePerformancesPress = () => {
-    router.push("/performances");
+    router.push({ pathname: "/performances", params: { userId: effectiveUserId} });
   };
 
   const handleSendMessage = async () => {
@@ -718,7 +718,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
               )}
               {item.multipleImages && (
                 <View style={styles.multipleImagesIcon}>
-                  <FontAwesome name="clone" size={14} color="#FFFFFF" />
+                  <FontAwesome6 name="clone" size={14} color="#FFFFFF" />
                 </View>
               )}
             </TouchableOpacity>
@@ -752,7 +752,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
     if (joinedEvents.length === 0) {
       return (
         <View style={[styles.emptyContainer, { flex: 1, minHeight: 300 }]}>
-          <FontAwesome name="calendar" size={60} color="#CCCCCC" />
+          <FontAwesome6 name="calendar" size={60} color="#CCCCCC" />
           <Text style={styles.emptyTitle}>No Joined Events</Text>
           <Text style={styles.emptySubtitle}>
             Events you join will appear here.
@@ -828,7 +828,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
     if (createdEvents.length === 0) {
       return (
         <View style={[styles.emptyContainer, { flex: 1, minHeight: 300 }]}>
-          <FontAwesome name="calendar-o" size={60} color="#CCCCCC" />
+          <FontAwesome6 name="calendar-o" size={60} color="#CCCCCC" />
           <Text style={styles.emptyTitle}>No Created Events</Text>
           <Text style={styles.emptySubtitle}>
             Events you create will appear here.
@@ -992,7 +992,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
     if (favorites.length === 0) {
       return (
         <View style={[styles.emptyContainer, { flex: 1, minHeight: 300 }]}>
-          <FontAwesome name="bookmark-o" size={60} color="#CCCCCC" />
+          <FontAwesome6 name="bookmark-o" size={60} color="#CCCCCC" />
           <Text style={styles.emptyTitle}>No Saved Posts</Text>
           <Text style={styles.emptySubtitle}>
             Posts you save will appear here.
@@ -1082,7 +1082,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
     if (likedPosts.length === 0) {
       return (
         <View style={[styles.emptyContainer, { flex: 1, minHeight: 300 }]}>
-          <FontAwesome name="heart-o" size={60} color="#CCCCCC" />
+          <FontAwesome6 name="heart-o" size={60} color="#CCCCCC" />
           <Text style={styles.emptyTitle}>No Liked Posts</Text>
           <Text style={styles.emptySubtitle}>
             Posts you like will appear here.
@@ -1135,7 +1135,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
               )}
               {item.multipleImages && (
                 <View style={styles.multipleImagesIcon}>
-                  <FontAwesome name="clone" size={14} color="#FFFFFF" />
+                  <FontAwesome6 name="clone" size={14} color="#FFFFFF" />
                 </View>
               )}
             </TouchableOpacity>
@@ -1161,7 +1161,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
     <View style={[styles.emptyContainer, { flex: 1, minHeight: 300 }]}>
       {activeTab === "posts" ? (
         <>
-          <FontAwesome name="camera" size={60} color="#CCCCCC" />
+          <FontAwesome6 name="camera" size={60} color="#CCCCCC" />
           <Text style={styles.emptyTitle}>No Posts</Text>
           <Text style={styles.emptySubtitle}>
             Photos and videos from your races and training sessions will appear here.
@@ -1172,7 +1172,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
         </>
       ) : activeTab === "liked" ? (
         <>
-          <FontAwesome name="heart-o" size={60} color="#CCCCCC" />
+          <FontAwesome6 name="heart-o" size={60} color="#CCCCCC" />
           <Text style={styles.emptyTitle}>No Liked Posts</Text>
           <Text style={styles.emptySubtitle}>
             Your liked posts will appear here.
@@ -1180,7 +1180,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
         </>
       ) : activeTab === "reels" ? (
         <>
-          <FontAwesome name="film" size={60} color="#CCCCCC" />
+          <FontAwesome6 name="film" size={60} color="#CCCCCC" />
           <Text style={styles.emptyTitle}>No Videos</Text>
           <Text style={styles.emptySubtitle}>
             Share the best moments from your races and circuits.
@@ -1191,7 +1191,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
         </>
       ) : activeTab === "events" ? (
         <>
-          <FontAwesome name="calendar" size={60} color="#CCCCCC" />
+          <FontAwesome6 name="calendar" size={60} color="#CCCCCC" />
           <Text style={styles.emptyTitle}>No Joined Events</Text>
           <Text style={styles.emptySubtitle}>
             Events you join will appear here.
@@ -1199,7 +1199,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
         </>
       ) : (
         <>
-          <FontAwesome name="bookmark-o" size={60} color="#CCCCCC" />
+          <FontAwesome6 name="bookmark-o" size={60} color="#CCCCCC" />
           <Text style={styles.emptyTitle}>No Saved Items</Text>
           <Text style={styles.emptySubtitle}>
             Save circuits, posts and events to find them easily.
@@ -1237,16 +1237,16 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
             style={styles.backButton}
             onPress={() => router.back()}
           >
-            <FontAwesome name="arrow-left" size={20} color="#1E1E1E" />
+            <FontAwesome6 name="arrow-left" size={20} color="#1E1E1E" />
           </TouchableOpacity>
-          <Text style={styles.username}>Profile</Text>
+          <Text style={styles.title}>Profile</Text>
           <View style={styles.headerRight}>
             <TouchableOpacity
               style={styles.menuButton}
               onPress={() => setMenuVisible(true)}
               hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
             >
-              <FontAwesome name="bars" size={24} color="#1E1E1E" />
+              <FontAwesome6 name="bars" size={24} color="#1E1E1E" />
             </TouchableOpacity>
           </View>
         </View>
@@ -1265,7 +1265,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
               elevation: 3,
             }]}>
               <View style={[styles.performanceGradient, { backgroundColor: 'transparent', alignItems: 'center', padding: 30 }]}>
-                <FontAwesome name="exclamation-triangle" size={64} color="#856404" />
+                <FontAwesome6 name="exclamation-triangle" size={64} color="#856404" />
                 <Text style={{ 
                   color: '#856404', 
                   marginTop: 20,
@@ -1369,7 +1369,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
                     style={styles.statItem}
                     onPress={() => router.push({
                       pathname: '/followList',
-                      params: { userId: effectiveUserId?.toString(), initialTab: 'followers' }
+                      params: { userId: effectiveUserId?.toString(), initialTab: 'followers', username: userData?.username || user?.username }
                     })}
                     disabled={isLoadingFollowStats}
                   >
@@ -1384,7 +1384,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
                     style={styles.statItem}
                     onPress={() => router.push({
                       pathname: '/followList',
-                      params: { userId: effectiveUserId?.toString(), initialTab: 'following' }
+                      params: { userId: effectiveUserId?.toString(), initialTab: 'following', username: userData?.username || user?.username }
                     })}
                     disabled={isLoadingFollowStats}
                   >
@@ -1462,8 +1462,9 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({
                 {/* Header avec badge premium */}
                 <View style={styles.performanceHeader}>
                   <View style={styles.performanceBadge}>
+                    <FontAwesome6 name="bolt" size={14} color="#e21111ff" />
                     <Text style={styles.performanceBadgeText}>
-                      ⚡ PERFORMANCE
+                       PERFORMANCE
                     </Text>
                   </View>
                   <View style={styles.performanceTitle}>

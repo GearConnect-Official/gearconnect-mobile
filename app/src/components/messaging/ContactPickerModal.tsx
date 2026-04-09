@@ -5,7 +5,6 @@ import {
   Modal,
   TouchableOpacity,
   FlatList,
-  TextInput,
   StyleSheet,
   Alert,
   ActivityIndicator,
@@ -14,6 +13,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Contacts from 'expo-contacts';
+import CustomTextInput from '../ui/CustomTextInput';
 import theme from '../../styles/config/theme';
 
 export interface ContactData {
@@ -201,7 +201,7 @@ const ContactPickerModal: React.FC<ContactPickerModalProps> = ({
           <>
             <View style={styles.searchContainer}>
               <FontAwesome name="search" size={18} color={theme.colors.text.secondary} style={styles.searchIcon} />
-              <TextInput
+              <CustomTextInput
                 style={styles.searchInput}
                 placeholder="Search contacts..."
                 placeholderTextColor={theme.colors.text.secondary}

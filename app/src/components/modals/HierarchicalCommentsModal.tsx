@@ -4,7 +4,6 @@ import {
   Text,
   Modal,
   TouchableOpacity,
-  TextInput,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -14,6 +13,7 @@ import {
   ScrollView,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import CustomTextInput from '../ui/CustomTextInput';
 import { useAuth } from "../../context/AuthContext";
 import commentService, {
   HierarchicalComment,
@@ -49,7 +49,7 @@ const HierarchicalCommentsModal: React.FC<HierarchicalCommentsModalProps> = ({
     commentId: number;
     username: string;
   } | null>(null);
-  const textInputRef = useRef<TextInput>(null);
+  const textInputRef = useRef<React.ElementRef<typeof CustomTextInput>>(null);
   const { showError, showConfirmation } = useMessage();
 
   const loadComments = useCallback(
@@ -444,7 +444,7 @@ const HierarchicalCommentsModal: React.FC<HierarchicalCommentsModalProps> = ({
 
             {/* Input */}
             <View style={hierarchicalCommentsStyles.inputRow}>
-              <TextInput
+              <CustomTextInput
                 ref={textInputRef}
                 style={hierarchicalCommentsStyles.textInput}
                 placeholder={

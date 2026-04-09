@@ -2,13 +2,13 @@ import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
   RefreshControl,
   Dimensions,
 } from "react-native";
+import CustomTextInput from "../components/ui/CustomTextInput";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "../styles/screens/events/eventsStyles";
@@ -545,7 +545,7 @@ const EventsScreen: React.FC = () => {
 
           <View style={styles.searchSection}>
             <View style={styles.searchBar}>
-              <TextInput
+              <CustomTextInput
                 style={styles.searchInput}
                 placeholder="Search for an event"
                 value={searchQuery}

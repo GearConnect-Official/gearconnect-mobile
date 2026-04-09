@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
 } from "react-native";
+import CustomTextInput from "../components/ui/CustomTextInput";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "../styles/screens/jobs/jobsStyles";
@@ -136,7 +136,7 @@ const JobsScreen: React.FC = () => {
         <View style={jobsScreenStyles.searchSection}>
           <View style={jobsScreenStyles.searchBar}>
             <FontAwesome name="search" size={18} color={RACING_COLORS.textSecondary} />
-            <TextInput
+            <CustomTextInput
               style={jobsScreenStyles.searchInput}
               placeholder="Search for a job or company"
               placeholderTextColor={RACING_COLORS.textSecondary}

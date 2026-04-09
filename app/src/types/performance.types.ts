@@ -3,6 +3,9 @@
  * Modern, fun interface for tracking racing performance
  */
 
+import { FontAwesome } from "@expo/vector-icons";
+import { ComponentProps } from "react";
+
 /**
  * Racing categories available for tracking
  */
@@ -23,7 +26,7 @@ export type RaceCategory =
  * Racing categories with fun labels and emojis
  */
 export const RACE_CATEGORIES: {
-  emoji: ReactNode; value: RaceCategory; label: string;color: string 
+ value: RaceCategory; label: string;color: string 
 }[] = [
   { value: 'karting', label: 'Karting', color: "#E10600" },
   { value: 'formula-3', label: 'Formula 3', color: "#E10600" },
@@ -253,12 +256,13 @@ export const getPositionColor = (racePosition: number): string => {
   return '#6B7280'; // Gray for others
 };
 
-export const getPositionEmoji = (racePosition: number): string => {
-  if (racePosition === 1) return '🥇';
-  if (racePosition === 2) return '🥈';
-  if (racePosition === 3) return '🥉';
-  if (racePosition <= 5) return '🏁';
-  return '🎯';
+export const getPositionIcon = (racePosition: number): ComponentProps<typeof        
+  FontAwesome>['name'] => {
+  if (racePosition === 1) return 'trophy';
+  if (racePosition === 2) return 'trophy';
+  if (racePosition === 3) return 'trophy';
+  if (racePosition <= 5) return 'star';
+  return 'flag';
 };
 
 export const getPositionLabel = (racePosition: number, total: number): string => {
@@ -296,7 +300,7 @@ const performanceTypes = {
   TRACK_CONDITIONS,
   PERFORMANCE_ACHIEVEMENTS,
   getPositionColor,
-  getPositionEmoji,
+  getPositionIcon,
   getPositionLabel,
   formatLapTime,
   parseLapTimeToSeconds,

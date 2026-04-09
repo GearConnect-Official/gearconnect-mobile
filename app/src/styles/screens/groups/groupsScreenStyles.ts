@@ -26,8 +26,9 @@ const styles = StyleSheet.create({
     padding: theme.spacing.xs,
   },
   headerTitle: {
-    ...theme.typography.h2,
-    color: theme.colors.text.primary,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#1A1A1A",
     flex: 1,
     textAlign: "center",
   },
@@ -184,11 +185,6 @@ const styles = StyleSheet.create({
     ...theme.typography.subtitle1,
     color: theme.colors.text.primary,
     marginBottom: theme.spacing.xs,
-  },
-  textInput: {
-    ...theme.common.input,
-    ...theme.typography.body1,
-    color: theme.colors.text.primary,
   },
   textArea: {
     height: 80,

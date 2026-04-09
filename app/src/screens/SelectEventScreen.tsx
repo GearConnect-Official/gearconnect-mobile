@@ -2,12 +2,12 @@ import React, { useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
   RefreshControl,
 } from "react-native";
+import CustomTextInput from '../components/ui/CustomTextInput';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -246,7 +246,7 @@ const SelectEventScreen: React.FC = () => {
           <View style={styles.searchIcon}>
             <FontAwesome name="search" size={16} color="#666" />
           </View>
-          <TextInput
+          <CustomTextInput
             style={styles.searchInput}
             placeholder="Search events..."
             placeholderTextColor="#999"

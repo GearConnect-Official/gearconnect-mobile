@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, TextInput, Image } from 'react-native';
+import { View, Image } from 'react-native';
+import CustomTextInput from '../ui/CustomTextInput';
 import styles from '../../styles/components/captionInputStyles';
 
 interface CaptionInputProps {
@@ -19,7 +20,7 @@ const CaptionInput: React.FC<CaptionInputProps> = ({
         source={{ uri: userAvatar }}
         style={styles.userAvatar}
       />
-      <TextInput
+      <CustomTextInput
         style={styles.captionInput}
         placeholder="Enter your caption"
         value={value}

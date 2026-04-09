@@ -3,11 +3,11 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TextInput,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
 } from "react-native";
+import CustomTextInput from "../components/ui/CustomTextInput";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import styles from "../styles/reviewStyles";
@@ -134,7 +134,7 @@ const CreateReviewScreen: React.FC = () => {
         <View>
           <RatingSelector />
           <View style={styles.textAreaContainer}>
-            <TextInput
+            <CustomTextInput
               style={styles.textArea}
               placeholder={`Write your review here... (max ${maxReviewLength} characters)`}
               placeholderTextColor="#A0A0A0"

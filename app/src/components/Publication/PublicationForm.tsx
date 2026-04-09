@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import {
   View,
-  TextInput,
   Image,
   Text,
   ScrollView,
@@ -11,6 +10,7 @@ import {
   Platform,
   Dimensions,
 } from "react-native";
+import CustomTextInput from "../ui/CustomTextInput";
 import { FontAwesome } from "@expo/vector-icons";
 import { publicationStyles as styles } from "../../styles/screens";
 import {
@@ -271,7 +271,7 @@ const PublicationForm: React.FC<PublicationFormProps> = ({
           <View style={styles.inputContainer}>
             <View style={publicationFormStyles.inputSection}>
               <Text style={publicationFormStyles.inputLabel}>Title</Text>
-              <TextInput
+              <CustomTextInput
                 style={styles.titleInput}
                 placeholder="Enter your title"
                 placeholderTextColor={theme.colors.text.secondary}
@@ -298,7 +298,7 @@ const PublicationForm: React.FC<PublicationFormProps> = ({
                   {descriptionCharactersLeft}
                 </Text>
               </View>
-              <TextInput
+              <CustomTextInput
                 style={styles.descriptionInput}
                 placeholder="Write your description"
                 placeholderTextColor={theme.colors.text.secondary}
@@ -339,7 +339,7 @@ const PublicationForm: React.FC<PublicationFormProps> = ({
               )}
 
               <View style={styles.tagInputContainer}>
-                <TextInput
+                <CustomTextInput
                   style={styles.tagInput}
                   placeholder="Add tags"
                   placeholderTextColor={theme.colors.text.secondary}

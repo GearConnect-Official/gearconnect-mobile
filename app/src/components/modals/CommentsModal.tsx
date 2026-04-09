@@ -4,7 +4,6 @@ import {
   Text,
   Modal,
   TouchableOpacity,
-  TextInput,
   FlatList,
   KeyboardAvoidingView,
   Platform,
@@ -12,6 +11,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import CustomTextInput from '../ui/CustomTextInput';
 import { formatPostDate } from '../../utils/dateUtils';
 import postService, { Comment } from '../../services/postService';
 import { useAuth } from '../../context/AuthContext';
@@ -153,7 +153,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({
     <View style={commentsModalStyles.commentContainer}>
       {editingComment?.id === comment.id ? (
         <View style={commentsModalStyles.editContainer}>
-          <TextInput
+          <CustomTextInput
             style={commentsModalStyles.editInput}
             value={editText}
             onChangeText={setEditText}
@@ -255,7 +255,7 @@ const CommentsModal: React.FC<CommentsModalProps> = ({
           style={commentsModalStyles.inputContainer}
         >
           <View style={commentsModalStyles.inputRow}>
-            <TextInput
+            <CustomTextInput
               style={commentsModalStyles.textInput}
               placeholder="Add a comment..."
               placeholderTextColor="#8E8E8E"

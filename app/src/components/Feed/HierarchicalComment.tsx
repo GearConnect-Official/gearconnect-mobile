@@ -89,7 +89,7 @@ const HierarchicalComment: React.FC<HierarchicalCommentProps> = ({
   const handleDelete = () => {
     Alert.alert(
       'Supprimer le commentaire',
-      'ÃŠtes-vous sÃ»r de vouloir supprimer ce commentaire ?',
+      'Êtes-vous sûr de vouloir supprimer ce commentaire ?',
       [
         { text: 'Annuler', style: 'cancel' },
         {

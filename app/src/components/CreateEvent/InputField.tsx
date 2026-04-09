@@ -1,5 +1,6 @@
 import * as React from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text } from "react-native";
+import CustomTextInput from '../ui/CustomTextInput';
 import { createEventStyles as styles } from "../../styles/screens";
 
 interface InputFieldProps {
@@ -22,7 +23,7 @@ const InputField: React.FC<InputFieldProps> = ({
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.inputTitle}>{title}</Text>
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder={placeholder}
         value={value}

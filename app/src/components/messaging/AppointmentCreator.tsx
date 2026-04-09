@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   Modal,
@@ -14,6 +13,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import CustomTextInput from '../ui/CustomTextInput';
 import theme from '../../styles/config/theme';
 import { addAppointmentToCalendar } from '../../utils/calendarHelper';
 
@@ -272,7 +272,7 @@ const AppointmentCreator: React.FC<AppointmentCreatorProps> = ({ visible, onSend
               keyboardShouldPersistTaps="handled"
             >
               <View style={styles.inputGroup}>
-                <TextInput
+                <CustomTextInput
                   style={styles.input}
                   placeholder="Add appointment name"
                   placeholderTextColor={theme.colors.text.secondary}
@@ -283,7 +283,7 @@ const AppointmentCreator: React.FC<AppointmentCreatorProps> = ({ visible, onSend
               </View>
 
               <View style={styles.inputGroup}>
-                <TextInput
+                <CustomTextInput
                   style={[styles.input, styles.textArea]}
                   placeholder="Add description (optional)"
                   placeholderTextColor={theme.colors.text.secondary}
@@ -503,7 +503,7 @@ const AppointmentCreator: React.FC<AppointmentCreatorProps> = ({ visible, onSend
               </View>
 
               <View style={styles.inputGroup}>
-                <TextInput
+                <CustomTextInput
                   style={styles.input}
                   placeholder="Add location (optional)"
                   placeholderTextColor={theme.colors.text.secondary}

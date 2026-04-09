@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   Modal,
@@ -13,6 +12,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import theme from '../../styles/config/theme';
+import CustomTextInput from '../ui/CustomTextInput';
 
 export interface PollOption {
   id: string;
@@ -154,7 +154,7 @@ const PollCreator: React.FC<PollCreatorProps> = ({ visible, onSend, onCancel, in
           {/* Question Input */}
           <View style={styles.section}>
             <Text style={styles.label}>Question</Text>
-            <TextInput
+            <CustomTextInput
               style={styles.questionInput}
               placeholder="Ask a question..."
               placeholderTextColor={theme.colors.text.secondary}
@@ -183,7 +183,7 @@ const PollCreator: React.FC<PollCreatorProps> = ({ visible, onSend, onCancel, in
                 <View style={styles.optionNumber}>
                   <Text style={styles.optionNumberText}>{index + 1}</Text>
                 </View>
-                <TextInput
+                <CustomTextInput
                   style={styles.optionInput}
                   placeholder={`Option ${index + 1}`}
                   placeholderTextColor={theme.colors.text.secondary}

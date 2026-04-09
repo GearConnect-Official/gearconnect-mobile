@@ -110,6 +110,13 @@ const styles = StyleSheet.create({  container: {
     fontWeight: "600",
     marginBottom: 8,
   },
+  title:{
+     fontSize: 18,
+    fontWeight: "bold",
+    color: "#1A1A1A",
+    flex: 1,
+    textAlign: "center",
+  },
   profileContainer: {
     flex: 0,
     backgroundColor: THEME_COLORS.background,
@@ -816,6 +823,10 @@ const styles = StyleSheet.create({  container: {
     borderWidth: 1,
     borderColor: "rgba(225, 6, 0, 0.2)",
     marginBottom: 12,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+     justifyContent: "center",
   },
   performanceBadgeText: {
     color: "#E10600",
@@ -823,6 +834,7 @@ const styles = StyleSheet.create({  container: {
     fontWeight: "700",
     letterSpacing: 1,
     textTransform: "uppercase",
+    marginLeft: 4,
   },
   performanceTitle: {
     alignItems: "center",

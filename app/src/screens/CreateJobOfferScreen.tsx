@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   Platform,
@@ -10,6 +9,7 @@ import {
   Modal,
   KeyboardAvoidingView,
 } from "react-native";
+import CustomTextInput from "../components/ui/CustomTextInput";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -292,7 +292,7 @@ const CreateJobOfferScreen: React.FC = () => {
             <FontAwesome name="briefcase" size={18} color={RACING_RED} />
             <Text style={styles.labelText}>Job Title</Text>
           </View>
-          <TextInput
+          <CustomTextInput
             style={styles.textInput}
             placeholder="Enter the job offer title"
             value={formData.title}
@@ -310,7 +310,7 @@ const CreateJobOfferScreen: React.FC = () => {
             <FontAwesome name="building" size={18} color={RACING_RED} />
             <Text style={styles.labelText}>Company</Text>
           </View>
-          <TextInput
+          <CustomTextInput
             style={styles.textInput}
             placeholder="Enter the company name"
             value={formData.company}
@@ -325,7 +325,7 @@ const CreateJobOfferScreen: React.FC = () => {
             <FontAwesome name="map-marker" size={18} color={RACING_RED} />
             <Text style={styles.labelText}>Location</Text>
           </View>
-          <TextInput
+          <CustomTextInput
             style={styles.textInput}
             placeholder="Enter job location (city, remote, etc.)"
             value={formData.location}
@@ -375,7 +375,7 @@ const CreateJobOfferScreen: React.FC = () => {
             <FontAwesome name="file-text" size={18} color={RACING_RED} />
             <Text style={styles.labelText}>Description</Text>
           </View>
-          <TextInput
+          <CustomTextInput
             style={[styles.textInput, styles.textAreaInput]}
             placeholder="Provide a detailed description of the job including requirements, responsibilities, and benefits"
             multiline
@@ -464,7 +464,7 @@ const CreateJobOfferScreen: React.FC = () => {
             <FontAwesome name="money" size={18} color={RACING_RED} />
             <Text style={styles.labelText}>Compensation</Text>
           </View>
-          <TextInput
+          <CustomTextInput
             style={styles.textInput}
             placeholder="Enter the salary range or compensation"
             keyboardType="default"
