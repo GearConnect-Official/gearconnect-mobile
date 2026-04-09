@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, ComponentProps } from "react";
 import {
   View,
   Text,
@@ -24,14 +24,14 @@ import {
   RACE_CATEGORIES,
   RaceCategory,
   getPositionColor,
-  getPositionEmoji,
+  getPositionIcon,
   getPositionLabel,
 } from "../types/performance.types";
 import {
   performanceStyles,
   THEME_COLORS,
   LAYOUT,
-} from "../styles/screens/user/performanceStyles";
+} from "../styles/screens/user/performanceStyles";   
 
 const PerformancesScreen: React.FC = () => {
   const router = useRouter();
@@ -631,7 +631,7 @@ const PerformancesScreen: React.FC = () => {
    */
   const renderPerformanceCard = (performance: Performance, index: number) => {
     const positionColor = getPositionColor(performance.racePosition);
-    const positionEmoji = getPositionEmoji(performance.racePosition);
+    const positionIcon = getPositionIcon(performance.racePosition);
     const positionLabel = getPositionLabel(
       performance.racePosition,
       performance.totalParticipants
@@ -674,15 +674,14 @@ const PerformancesScreen: React.FC = () => {
           <View style={performanceStyles.performanceRow}>
             <View style={performanceStyles.performanceMetric}>
               <View style={performanceStyles.metricIcon}>
-                <Text style={{ fontSize: 20 }}>{positionEmoji}</Text>
-              </View>
-              <Text style={performanceStyles.metricLabel}>Position</Text>
-              <Text
-                style={[
-                  performanceStyles.positionValue,
-                  { color: positionColor },
-                ]}
-              >
+                <FontAwesome name={positionIcon as ComponentProps<typeof FontAwesome>['name']} size={20} color={positionColor} />              </View>
+                <Text style={performanceStyles.metricLabel}>Position</Text>
+                <Text
+                  style={[
+                    performanceStyles.positionValue,
+                    { color: positionColor },
+                  ]}
+                >
                 {positionLabel}
               </Text>
             </View>
@@ -707,9 +706,7 @@ const PerformancesScreen: React.FC = () => {
           <View style={performanceStyles.performanceRow}>
             <View style={performanceStyles.performanceMetric}>
               <View style={performanceStyles.metricIcon}>
-                <Text style={{ fontSize: 16 }}>
-                  {categoryData?.emoji || "🏁"}
-                </Text>
+                <FontAwesome name="flag-checkered" size={16} color={THEME_COLORS.PRIMARY} />        
               </View>
               <Text style={performanceStyles.metricLabel}>Category</Text>
               <Text style={performanceStyles.metricValue}>
@@ -720,6 +717,7 @@ const PerformancesScreen: React.FC = () => {
 
           {performance.notes && (
             <View style={performanceStyles.notesContainer}>
+                <FontAwesome name="comment-o" size={16} color={THEME_COLORS.TEXT_SECONDARY} />      
               <Text style={performanceStyles.notesText}>
                 💭 {performance.notes}
               </Text>

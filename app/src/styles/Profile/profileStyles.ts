@@ -823,6 +823,10 @@ const styles = StyleSheet.create({  container: {
     borderWidth: 1,
     borderColor: "rgba(225, 6, 0, 0.2)",
     marginBottom: 12,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+     justifyContent: "center",
   },
   performanceBadgeText: {
     color: "#E10600",
@@ -830,6 +834,7 @@ const styles = StyleSheet.create({  container: {
     fontWeight: "700",
     letterSpacing: 1,
     textTransform: "uppercase",
+    marginLeft: 4,
   },
   performanceTitle: {
     alignItems: "center",
